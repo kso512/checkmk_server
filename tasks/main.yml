@@ -1,2 +1,11 @@
 ---
 # tasks file for checkmk_server
+- name: Download CheckMK RAW | GET_URL
+  ansible.builtin.get_url:
+    dest: "{{ checkmk_server_dest }}/{{ checkmk_server_source }}"
+    mode: "{{ checkmk_server_source_mode }}"
+    url: "{{ checkmk_server_source_url }}"
+    checksum: "{{ checkmk_server_source_checksum }}"
+  tags:
+    - checkmk-server
+...
