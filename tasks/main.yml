@@ -1,5 +1,13 @@
 ---
 # tasks file for checkmk_server
+- name: Install pre-requisites | APT
+  ansible.builtin.apt:
+    name: "{{ checkmk_server_prerequisites }}"
+    state: present
+    update_cache: yes
+    cache_valid_time: "{{ checkmk_server_cache_valid_time }}"
+  tags:
+    - checkmk-server
 - name: Download CheckMK RAW | GET_URL
   ansible.builtin.get_url:
     dest: "{{ checkmk_server_dest }}/{{ checkmk_server_source }}"

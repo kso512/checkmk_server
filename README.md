@@ -12,7 +12,7 @@ All tasks are tagged with `checkmk-server`.
 
 **I do NOT recommend the default configuration for unprotected connection directly to the Internet, as the server configuration includes un-encrypted HTTP access.**
 
-Tested automatically and continuously integrated with the [Molecule and GitHub Actions as instructed by Jeff Geerling](https://github.com/geerlingguy/molecule-playbook-testing) on the following distributions:
+Tested automatically and continuously integrated with [_Molecule playbook testing_ as instructed by Jeff Geerling](https://github.com/geerlingguy/molecule-playbook-testing) on the following distributions:
 
 - [Ubuntu 18.04 LTS "Bionic Beaver"](http://releases.ubuntu.com/bionic/)
 
@@ -26,11 +26,13 @@ To fulfill these requirements, I recommend using another Ansible Role.  For exam
 
 ## Role Variables
 
-### Defaults
+### Table of variables with defaults
 
 | Variable | Description | Value |
 | -------- | ----------- | ----- |
+| checkmk_server_cache_valid_time | Number of seconds to consider the last apt cache update as valid | `3600` |
 | checkmk_server_dest | Destination folder of the source installation package | `/opt` |
+| checkmk_server_prerequisites | Package needed before installing CheckMK RAW | `dpkg-sig` |
 | checkmk_server_source | Filename of the source installation package | `check-mk-raw-{{ checkmk_server_version }}_0.{{ ansible_distribution_release }}_amd64.deb` |
 | checkmk_server_source_checksum | SHA256 checksum of the source installation package | `sha256:aedd9b72aea27b8ceb27a2d25c2606c0a2642146689108af51f514c42ba293cd` |
 | checkmk_server_source_mode | File mode settings of the source installation package | `0755` |
@@ -43,7 +45,7 @@ None yet defined.
 
 ## Example Playbook
 
-Usage example that enforces a specific version of CheckMK RAW:
+Example that enforces a specific version of CheckMK RAW:
 
     - hosts: monitoring-servers
       roles:
@@ -55,7 +57,7 @@ Usage example that enforces a specific version of CheckMK RAW:
 
 ## Author Information
 
-Chris Lindbergh [@kso512](https://github.com/kso512) with contributions to the original "install-check_mk-server" code from these helpful Github users:
+[@kso512](https://github.com/kso512) with contributions to the original "install-check_mk-server" code from these helpful Github users:
 
 - [@sylekta](https://github.com/sylekta)
 - [@timorunge](https://github.com/timorunge)
