@@ -19,7 +19,7 @@ jobs:
 #          - distro: centos7
 #          - distro: centos8
 #          - distro: debian9
-#          - distro: debian10
+          - distro: debian10
           - distro: ubuntu1804
     steps:
       - name: Check out the codebase

@@ -1,5 +1,17 @@
 ---
 # tasks file for checkmk_server
+- name: Load a variable file based on the OS type, or a default if not found. Using free-form to specify the file | INCLUDE_VARS
+  include_vars: "{{ lookup('first_found', params) }}"
+  vars:
+    params:
+      files:
+        - "{{ ansible_distribution_release }}.{{ ansible_distribution }}.yml"
+        - "{{ ansible_distribution }}.{{ ansible_distribution_major_version }}.yml"
+        - default.yml
+      paths:
+        - 'vars'
+  tags:
+    - checkmk-server
 - name: Replace systemctl with docker-systemctl-replacement | GET_URL
   ansible.builtin.get_url:
     dest: "{{ checkmk_server_systemctl_dest }}"

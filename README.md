@@ -1,10 +1,12 @@
-# checkmk_server
+# [checkmk_server](https://galaxy.ansible.com/kso512/checkmk_server)
 
-[![made-with-bash](https://img.shields.io/badge/Made%20with-Bash-1f425f.svg)](https://www.gnu.org/software/bash/) [![made-with-Markdown](https://img.shields.io/badge/Made%20with-Markdown-1f425f.svg)](http://commonmark.org) ![GitHub](https://img.shields.io/github/license/kso512/checkmk_server)
+[![Ansible role quality](https://img.shields.io/ansible/quality/56129)](https://galaxy.ansible.com/kso512/checkmk_server) [![Ansible role downloads](https://img.shields.io/ansible/role/d/56129)](https://galaxy.ansible.com/kso512/checkmk_server)
 
-![GitHub repo size](https://img.shields.io/github/repo-size/kso512/checkmk_server) ![GitHub issues](https://img.shields.io/github/issues-raw/kso512/checkmk_server)
+[![made-with-bash](https://img.shields.io/badge/Made%20with-Bash-1f425f.svg)](https://www.gnu.org/software/bash/) [![made-with-Markdown](https://img.shields.io/badge/Made%20with-Markdown-1f425f.svg)](http://commonmark.org) [![GitHub](https://img.shields.io/github/license/kso512/checkmk_server)](https://www.gnu.org/licenses/gpl-2.0.txt)
 
-An [Ansible](https://www.ansible.com/) [Role](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html) to install [CheckMK RAW](https://checkmk.com/product/raw-edition) and set up an initial site.
+[![GitHub repo size](https://img.shields.io/github/repo-size/kso512/checkmk_server)](https://github.com/kso512/checkmk_server) [![GitHub issues](https://img.shields.io/github/issues-raw/kso512/checkmk_server)](https://github.com/kso512/checkmk_server)
+
+An [Ansible](https://www.ansible.com/) [Role](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html) to install [CheckMK RAW edition](https://checkmk.com/product/raw-edition) and set up an initial site.
 
 This is a complete rebuild of the [install-check_mk-server](https://github.com/kso512/install-check_mk-server) role I created and maintained for years, undertaken due to changes in CI/CD and naming conventions in Ansible Galaxy & CheckMK.
 
@@ -14,6 +16,7 @@ All tasks are tagged with `checkmk-server`.
 
 The following distributions have been tested automatically and continuously integrated:
 
+- [Debian 10 "Buster"](https://www.debian.org/releases/buster/)
 - [Ubuntu 18.04 LTS "Bionic Beaver"](http://releases.ubuntu.com/bionic/)
 
 ...using the following technologies:
@@ -36,9 +39,11 @@ To fulfill these requirements, I recommend using another Ansible Role.
 
 ## Role Variables
 
+To enable multi-distro support, the role defines distro-specific variables with the [`include_vars` and `with_first_found`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/include_vars_module.html) mechanisms.
+
 Some of these may be seem redundant but are specified so future users can override them with local variables as needed.
 
-For reference, "OMD" below stands for the Open Monitoring Distribution which is a predecessor of CheckMK RAW.  Those "omd" commands are left in for backwards compatibility.
+For reference, "OMD" below stands for the [Open Monitoring Distribution](https://checkmk.com/guides/open-monitoring-distribution) which is a predecessor of CheckMK RAW edition.  Those "omd" commands were left in for backwards compatibility.
 
 ### Table of variables with defaults
 
@@ -71,12 +76,12 @@ For reference, "OMD" below stands for the Open Monitoring Distribution which is 
 | checkmk_server_omd_setup_creates | Folder created by setting up OMD | `/opt/omd` |
 | checkmk_server_omd_start_command | Command used to start OMD | `omd start {{ checkmk_server_site }}` |
 | checkmk_server_omd_start_creates | File created by starting OMD | `/opt/omd/sites/{{ checkmk_server_site }}/tmp/apache/run/apache.pid` |
-| checkmk_server_prerequisites | Package needed before installing CheckMK RAW | `python3-passlib` |
+| checkmk_server_prerequisites | Package needed before installing CheckMK RAW edition | `python3-passlib` |
 | checkmk_server_site | Name of OMD "site" to create; this is often shown as `my-site` in the CheckMK documentation examples | `test` |
 | checkmk_server_systemctl_dest | File name to replace with the docker-systemctl-replacement script | `/usr/bin/systemctl` |
 | checkmk_server_systemctl_mode | File mode settings of the docker-systemctl-replacement script | `0755` |
 | checkmk_server_systemctl_url | URL of the docker-systemctl-replacement script | `https://github.com/gdraheim/docker-systemctl-replacement/raw/master/files/docker/systemctl.py` |
-| checkmk_server_version | Version of CheckMK RAW to install | `2.0.0p9` |
+| checkmk_server_version | Version of CheckMK RAW edition to install | `2.0.0p9` |
 | checkmk_server_web_service | Name of the web service to start and enable | `apache2` |
 
 ## Dependencies

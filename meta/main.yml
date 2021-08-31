@@ -12,9 +12,9 @@ galaxy_info:
 #      versions:
 #        - 7
 #        - 8
-#    - name: Debian
-#      versions:
-#        - buster
+    - name: Debian
+      versions:
+        - buster
 #        - stretch
     - name: Ubuntu
       versions:
@@ -24,8 +24,8 @@ galaxy_info:
     - raw
     - cre
     - ubuntu
-#    - debian
-#    - buster
+    - debian
+    - buster
 #    - stretch
     - bionic
 #    - centos
