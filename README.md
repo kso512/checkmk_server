@@ -12,16 +12,21 @@ All tasks are tagged with `checkmk-server`.
 
 **I do NOT recommend the default configuration for unprotected connection directly to the Internet, as the server configuration includes un-encrypted HTTP access.**
 
-Tested automatically and continuously integrated with [_Molecule playbook testing_ as instructed by Jeff Geerling](https://github.com/geerlingguy/molecule-playbook-testing) on the following distributions:
+The following distributions have been tested automatically and continuously integrated:
 
 - [Ubuntu 18.04 LTS "Bionic Beaver"](http://releases.ubuntu.com/bionic/)
+
+...using the following technologies:
+
+- [Molecule playbook testing](https://github.com/geerlingguy/molecule-playbook-testing) by [@geerlingguy](https://github.com/geerlingguy)
+- [GitHub Actions](https://github.com/features/actions)
+- [docker-systemctl-replacement](https://github.com/gdraheim/docker-systemctl-replacement) by [@gdraheim](https://github.com/gdraheim)
 
 ## Requirements
 
 The below requirements are needed on the host that executes this module.
 
 - [python3-apt](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_module.html#requirements)
-- [gpg](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_key_module.html#requirements)
 
 If the server has a firewall enabled, it may need to be altered to allow incoming packets on TCP port 80 for the web portal access, and/or TCP port 514, plus UDP ports 162 & 514 for event console input.
 
@@ -31,23 +36,48 @@ To fulfill these requirements, I recommend using another Ansible Role.
 
 ## Role Variables
 
+Some of these may be seem redundant but are specified so future users can override them with local variables as needed.
+
+For reference, "OMD" below stands for the Open Monitoring Distribution which is a predecessor of CheckMK RAW.  Those "omd" commands are left in for backwards compatibility.
+
 ### Table of variables with defaults
 
 | Variable | Description | Default |
-| -------- | ----------- | ----- |
-| checkmk_server_base_url | Base URL other URLs are based on | `https://download.checkmk.com/checkmk` |
-| checkmk_server_cache_valid_time | Number of seconds to consider the last apt cache update as valid | `3600` |
-| checkmk_server_dest | Destination folder of the source installation package | `/opt` |
-| checkmk_server_prerequisites | Package needed before installing CheckMK RAW | `dpkg-sig` |
-| checkmk_server_public_key | Filename of the CheckMK public key | `Check_MK-pubkey.gpg` |
-| checkmk_server_public_key_dest | Destination folder of the CheckMK public key | `/usr/share/keyrings` |
-| checkmk_server_public_key_mode | File mode settings of the CheckMK public key | `0644` |
-| checkmk_server_public_key_url | URL of the CheckMK public key | `{{ checkmk_server_base_url }}/{{ checkmk_server_public_key }}` |
-| checkmk_server_source | Filename of the source installation package | `check-mk-raw-{{ checkmk_server_version }}_0.{{ ansible_distribution_release }}_amd64.deb` |
-| checkmk_server_source_checksum | SHA256 checksum of the source installation package | `sha256:aedd9b72aea27b8ceb27a2d25c2606c0a2642146689108af51f514c42ba293cd` |
-| checkmk_server_source_mode | File mode settings of the source installation package | `0755` |
-| checkmk_server_source_url | URL of the source installation package to download | `{{ checkmk_server_base_url }}/{{ checkmk_server_version }}/{{ checkmk_server_source }}` |
+| -------- | ----------- | ------- |
+| checkmk_server_adminpw | Password for the `cmkadmin` user created for the test site; if left blank, the password for this user can be found in the `checkmk_server_log_dest` file created on the remote instance | undefined |
+| checkmk_server_base_url | Base URL that other URLs are based on | `https://download.checkmk.com/checkmk` |
+| checkmk_server_cache_valid_time | Update the apt cache if it is older than this time, in seconds. | `3600` |
+| checkmk_server_download | Filename of the source installation package | `check-mk-raw-{{ checkmk_server_version }}_0.{{ ansible_distribution_release }}_amd64.deb` |
+| checkmk_server_download_checksum | SHA256 checksum of the source installation package | `sha256:aedd9b72aea27b8ceb27a2d25c2606c0a2642146689108af51f514c42ba293cd` |
+| checkmk_server_download_dest | Final full path of the source installation package | `{{ checkmk_server_download_dest_folder }}/{{ checkmk_server_download }}` |
+| checkmk_server_download_dest_folder | Destination folder of the source installation package | `/opt` |
+| checkmk_server_download_mode | File mode settings of the source installation package | `0755` |
+| checkmk_server_download_url | URL of the source installation package to download | `{{ checkmk_server_base_url }}/{{ checkmk_server_version }}/{{ checkmk_server_source }}` |
+| checkmk_server_htpasswd_group | Name of the group that should own the htpasswd file, as would be fed to chown | `{{ checkmk_server_site }}` |
+| checkmk_server_htpasswd_mode | File mode settings of the htpasswd file | `0660` |
+| checkmk_server_htpasswd_name | Name of the user that will have their password set, if `checkmk_server_adminpw` is set | `cmkadmin` |
+| checkmk_server_htpasswd_owner | Name of the user that should own the htpasswd file, as would be fed to chown | `{{ checkmk_server_site }}` |
+| checkmk_server_htpasswd_path | Final full path of the htpasswd file | `/opt/omd/sites/{{ checkmk_server_site }}/etc/htpasswd` |
+| checkmk_server_install_deb | Final full path of the installation package | `{{ checkmk_server_download_dest }}` |
+| checkmk_server_log_dest | Final full path of the OMD create log, which captures the cmkadmin password if `checkmk_server_adminpw` is not set | `/opt/omd/sites/{{ checkmk_server_site }}/omd-create.log` |
+| checkmk_server_log_group | Name of the group that should own the OMD create log, as would be fed to chown | `{{ checkmk_server_site }}` |
+| checkmk_server_log_mode | File mode settings of the OMD create log | `0600` |
+| checkmk_server_log_owner | Name of the user that should own the OMD create log, as would be fed to chown | `{{ checkmk_server_site }}` |
+| checkmk_server_man_mode | File mode settings of the required man folder | `0755` |
+| checkmk_server_man_path | Final full path of the required man folder | `/usr/share/man/man8` |
+| checkmk_server_omd_create_command | Command used to create a new OMD site | `omd create {{ checkmk_server_site }}` |
+| checkmk_server_omd_create_creates | File created by creating a new OMD site | `/opt/omd/sites/{{ checkmk_server_site }}` |
+| checkmk_server_omd_setup_command | Command used to set up OMD | `omd setup` |
+| checkmk_server_omd_setup_creates | Folder created by setting up OMD | `/opt/omd` |
+| checkmk_server_omd_start_command | Command used to start OMD | `omd start {{ checkmk_server_site }}` |
+| checkmk_server_omd_start_creates | File created by starting OMD | `/opt/omd/sites/{{ checkmk_server_site }}/tmp/apache/run/apache.pid` |
+| checkmk_server_prerequisites | Package needed before installing CheckMK RAW | `python3-passlib` |
+| checkmk_server_site | Name of OMD "site" to create; this is often shown as `my-site` in the CheckMK documentation examples | `test` |
+| checkmk_server_systemctl_dest | File name to replace with the docker-systemctl-replacement script | `/usr/bin/systemctl` |
+| checkmk_server_systemctl_mode | File mode settings of the docker-systemctl-replacement script | `0755` |
+| checkmk_server_systemctl_url | URL of the docker-systemctl-replacement script | `https://github.com/gdraheim/docker-systemctl-replacement/raw/master/files/docker/systemctl.py` |
 | checkmk_server_version | Version of CheckMK RAW to install | `2.0.0p9` |
+| checkmk_server_web_service | Name of the web service to start and enable | `apache2` |
 
 ## Dependencies
 
@@ -55,11 +85,11 @@ None yet defined.
 
 ## Example Playbook
 
-Example that enforces a specific version of CheckMK RAW:
+Example that enforces a specific password for the `cmkadmin` user:
 
     - hosts: monitoring-servers
       roles:
-         - { role: kso512.checkmk_server, checkmk_server_version: "2.0.0p8" }
+         - { role: kso512.checkmk_server, checkmk_server_adminpw: "wintermute" }
 
 ## License
 
