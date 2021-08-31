@@ -1,5 +1,13 @@
 ---
 # tasks file for checkmk_server
+- name: Download CheckMK RAW | GET_URL
+  ansible.builtin.get_url:
+    dest: "{{ checkmk_server_dest }}/{{ checkmk_server_source }}"
+    mode: "{{ checkmk_server_source_mode }}"
+    url: "{{ checkmk_server_source_url }}"
+    checksum: "{{ checkmk_server_source_checksum }}"
+  tags:
+    - checkmk-server
 - name: Install pre-requisites | APT
   ansible.builtin.apt:
     name: "{{ checkmk_server_prerequisites }}"
@@ -8,12 +16,11 @@
     cache_valid_time: "{{ checkmk_server_cache_valid_time }}"
   tags:
     - checkmk-server
-- name: Download CheckMK RAW | GET_URL
+- name: Download CheckMK public key | GET_URL
   ansible.builtin.get_url:
-    dest: "{{ checkmk_server_dest }}/{{ checkmk_server_source }}"
-    mode: "{{ checkmk_server_source_mode }}"
-    url: "{{ checkmk_server_source_url }}"
-    checksum: "{{ checkmk_server_source_checksum }}"
+    dest: "{{ checkmk_server_public_key_dest }}/{{ checkmk_server_public_key }}"
+    mode: "{{ checkmk_server_public_key_mode }}"
+    url: "{{ checkmk_server_public_key_url }}"
   tags:
     - checkmk-server
 ...
