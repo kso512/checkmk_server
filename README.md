@@ -16,6 +16,7 @@ All tasks are tagged with `checkmk-server`.
 
 The following distributions have been tested automatically and continuously integrated:
 
+- [CentOS-7](https://wiki.centos.org/Manuals/ReleaseNotes/CentOS7)
 - [CentOS-8](https://wiki.centos.org/Manuals/ReleaseNotes/CentOS8.1905)
 - [Debian 9 "Stretch"](https://www.debian.org/releases/stretch/)
 - [Debian 10 "Buster"](https://www.debian.org/releases/buster/)
@@ -31,14 +32,9 @@ The following distributions have been tested automatically and continuously inte
 
 | Role Version | CheckMK Raw Edition Version |
 | ------------ | --------------------------- |
-| 1.0.0 | 2.0.0p9 |
+| 1.0.0 - 1.0.1 | 2.0.0p9 |
 
 ## Requirements
-
-The below requirements are needed on the host that executes this module when it uses APT:
-
-- Python 2: [python-apt](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_module.html#requirements)
-- Python 3: [python3-apt](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_module.html#requirements)
 
 If the server has a firewall enabled, it may need to be altered to allow incoming packets on TCP port 80 for the web portal access, and/or TCP port 514, plus UDP ports 162 & 514 for event console input.
 
@@ -97,6 +93,7 @@ Description: Filename of the source installation package
 
 | Distribution | Default |
 | ------------ | ------- |
+| CentOS 7 | `check-mk-raw-{{ checkmk_server_version }}-el{{ ansible_distribution_major_version }}-38.x86_64.rpm` |
 | CentOS 8 | `check-mk-raw-{{ checkmk_server_version }}-el{{ ansible_distribution_major_version }}-38.x86_64.rpm` |
 | Debian 9 | `check-mk-raw-{{ checkmk_server_version }}_0.{{ ansible_distribution_release }}_amd64.deb` |
 | Debian 10 | `check-mk-raw-{{ checkmk_server_version }}_0.{{ ansible_distribution_release }}_amd64.deb` |
@@ -108,6 +105,7 @@ Description: SHA256 checksum of the source installation package
 
 | Distribution | Default |
 | ------------ | ------- |
+| CentOS 7 | `sha256:d5e9e2a7634c4e18750dd49a70b874fbf9154b3fef8dbd5fbaf3d79f2a13f5a1` |
 | CentOS 8 | `sha256:73c70a9f2904bf21212acc6a14eb01b8d7ec4f510b8c32c10c096b080bde7b5c` |
 | Debian 9 | `sha256:6f7869f4d730be14d61f0ec0ef9e132b0fc1aaa46ccb3f90c58cb5f383e489a8` |
 | Debian 10 | `sha256:e12e5ede139ee1eba9018689c477f30990f32a989306b783eae1f56d0fc5dc7b` |
@@ -119,6 +117,7 @@ Description: Packages needed before installing CheckMK RAW edition
 
 | Distribution | Default |
 | ------------ | ------- |
+| CentOS 7 | `cronie` `python-passlib` |
 | CentOS 8 | `cronie` `graphviz-gd` `python3-passlib` |
 | Debian 9 | `python-apt` `python-passlib` |
 | Debian 10 | `python3-apt` `python3-passlib` |
@@ -130,6 +129,7 @@ Description: URL of the docker-systemctl-replacement script
 
 | Distribution | Default |
 | ------------ | ------- |
+| CentOS 7 | `https://github.com/gdraheim/docker-systemctl-replacement/raw/master/files/docker/systemctl.py` |
 | CentOS 8 | `https://github.com/gdraheim/docker-systemctl-replacement/raw/master/files/docker/systemctl3.py` |
 | Debian 9 | `https://github.com/gdraheim/docker-systemctl-replacement/raw/master/files/docker/systemctl.py` |
 | Debian 10 | `https://github.com/gdraheim/docker-systemctl-replacement/raw/master/files/docker/systemctl3.py` |
@@ -141,6 +141,7 @@ Description: Name of the web service to start and enable
 
 | Distribution | Default |
 | ------------ | ------- |
+| CentOS 7 | `httpd` |
 | CentOS 8 | `httpd` |
 | Debian 9 | `apache2` |
 | Debian 10 | `apache2` |
