@@ -17,7 +17,7 @@ jobs:
       matrix:
         include:
 #          - distro: centos7
-#          - distro: centos8
+          - distro: centos8
           - distro: debian9
           - distro: debian10
           - distro: ubuntu1804

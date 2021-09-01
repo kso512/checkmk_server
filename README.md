@@ -16,6 +16,7 @@ All tasks are tagged with `checkmk-server`.
 
 The following distributions have been tested automatically and continuously integrated:
 
+- [CentOS-8](https://wiki.centos.org/Manuals/ReleaseNotes/CentOS8.1905)
 - [Debian 9 "Stretch"](https://www.debian.org/releases/stretch/)
 - [Debian 10 "Buster"](https://www.debian.org/releases/buster/)
 - [Ubuntu 18.04 LTS "Bionic Beaver"](http://releases.ubuntu.com/bionic/)
@@ -30,11 +31,11 @@ The following distributions have been tested automatically and continuously inte
 
 | Role Version | CheckMK Raw Edition Version |
 | ------------ | --------------------------- |
-| 0.0.1 | 2.0.0p9 |
+| 1.0.0 | 2.0.0p9 |
 
 ## Requirements
 
-The below requirements are needed on the host that executes this module.
+The below requirements are needed on the host that executes this module when it uses APT:
 
 - Python 2: [python-apt](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_module.html#requirements)
 - Python 3: [python3-apt](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_module.html#requirements)
@@ -58,7 +59,6 @@ For reference, "OMD" below stands for the [Open Monitoring Distribution](https:/
 | checkmk_server_adminpw | Password for the `cmkadmin` user created for the test site; if left blank, the password for this user can be found in the `checkmk_server_log_dest` file created on the remote instance | undefined |
 | checkmk_server_base_url | Base URL that other URLs are based on | `https://download.checkmk.com/checkmk` |
 | checkmk_server_cache_valid_time | Update the apt cache if it is older than this time, in seconds. | `3600` |
-| checkmk_server_download | Filename of the source installation package | `check-mk-raw-{{ checkmk_server_version }}_0.{{ ansible_distribution_release }}_amd64.deb` |
 | checkmk_server_download_dest | Final full path of the source installation package | `{{ checkmk_server_download_dest_folder }}/{{ checkmk_server_download }}` |
 | checkmk_server_download_dest_folder | Destination folder of the source installation package | `/opt` |
 | checkmk_server_download_mode | File mode settings of the source installation package | `0755` |
@@ -68,7 +68,8 @@ For reference, "OMD" below stands for the [Open Monitoring Distribution](https:/
 | checkmk_server_htpasswd_name | Name of the user that will have their password set, if `checkmk_server_adminpw` is set | `cmkadmin` |
 | checkmk_server_htpasswd_owner | Name of the user that should own the htpasswd file, as would be fed to chown | `{{ checkmk_server_site }}` |
 | checkmk_server_htpasswd_path | Final full path of the htpasswd file | `/opt/omd/sites/{{ checkmk_server_site }}/etc/htpasswd` |
-| checkmk_server_install_deb | Final full path of the installation package | `{{ checkmk_server_download_dest }}` |
+| checkmk_server_install_package | Final full path of the installation package | `{{ checkmk_server_download_dest }}` |
+| checkmk_server_key_url | URL of the public key for CheckMK | `{{ checkmk_server_base_url }}/Check_MK-pubkey.gpg` |
 | checkmk_server_log_dest | Final full path of the OMD create log, which captures the cmkadmin password if `checkmk_server_adminpw` is not set | `/opt/omd/sites/{{ checkmk_server_site }}/omd-create.log` |
 | checkmk_server_log_group | Name of the group that should own the OMD create log, as would be fed to chown | `{{ checkmk_server_site }}` |
 | checkmk_server_log_mode | File mode settings of the OMD create log | `0600` |
@@ -84,13 +85,22 @@ For reference, "OMD" below stands for the [Open Monitoring Distribution](https:/
 | checkmk_server_site | Name of OMD "site" to create; this is often shown as `my-site` in the CheckMK documentation examples | `test` |
 | checkmk_server_systemctl_dest | File name to replace with the docker-systemctl-replacement script | `/usr/bin/systemctl` |
 | checkmk_server_systemctl_mode | File mode settings of the docker-systemctl-replacement script | `0755` |
-| checkmk_server_systemctl_url | URL of the docker-systemctl-replacement script | `https://github.com/gdraheim/docker-systemctl-replacement/raw/master/files/docker/systemctl.py` |
 | checkmk_server_version | Version of CheckMK RAW edition to install | `2.0.0p9` |
-| checkmk_server_web_service | Name of the web service to start and enable | `apache2` |
 
 ### Tables of Variables Unique to at Least One Distribution (with Defaults)
 
 To enable multi-distro support, the role defines distro-specific variables with the [`include_vars` and `with_first_found`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/include_vars_module.html) mechanisms.
+
+#### checkmk_server_download
+
+Description: Filename of the source installation package
+
+| Distribution | Default |
+| ------------ | ------- |
+| CentOS 8 | `check-mk-raw-{{ checkmk_server_version }}-el{{ ansible_distribution_major_version }}-38.x86_64.rpm` |
+| Debian 9 | `check-mk-raw-{{ checkmk_server_version }}_0.{{ ansible_distribution_release }}_amd64.deb` |
+| Debian 10 | `check-mk-raw-{{ checkmk_server_version }}_0.{{ ansible_distribution_release }}_amd64.deb` |
+| Ubuntu 18.04 | `check-mk-raw-{{ checkmk_server_version }}_0.{{ ansible_distribution_release }}_amd64.deb` |
 
 #### checkmk_server_download_checksum
 
@@ -98,6 +108,7 @@ Description: SHA256 checksum of the source installation package
 
 | Distribution | Default |
 | ------------ | ------- |
+| CentOS 8 | `sha256:73c70a9f2904bf21212acc6a14eb01b8d7ec4f510b8c32c10c096b080bde7b5c` |
 | Debian 9 | `sha256:6f7869f4d730be14d61f0ec0ef9e132b0fc1aaa46ccb3f90c58cb5f383e489a8` |
 | Debian 10 | `sha256:e12e5ede139ee1eba9018689c477f30990f32a989306b783eae1f56d0fc5dc7b` |
 | Ubuntu 18.04 | `sha256:aedd9b72aea27b8ceb27a2d25c2606c0a2642146689108af51f514c42ba293cd` |
@@ -108,9 +119,32 @@ Description: Packages needed before installing CheckMK RAW edition
 
 | Distribution | Default |
 | ------------ | ------- |
+| CentOS 8 | `cronie` `graphviz-gd` `python3-passlib` |
 | Debian 9 | `python-apt` `python-passlib` |
 | Debian 10 | `python3-apt` `python3-passlib` |
 | Ubuntu 18.04 | `python3-apt` `python3-passlib` |
+
+#### checkmk_server_systemctl_url
+
+Description: URL of the docker-systemctl-replacement script
+
+| Distribution | Default |
+| ------------ | ------- |
+| CentOS 8 | `https://github.com/gdraheim/docker-systemctl-replacement/raw/master/files/docker/systemctl3.py` |
+| Debian 9 | `https://github.com/gdraheim/docker-systemctl-replacement/raw/master/files/docker/systemctl.py` |
+| Debian 10 | `https://github.com/gdraheim/docker-systemctl-replacement/raw/master/files/docker/systemctl3.py` |
+| Ubuntu 18.04 | `https://github.com/gdraheim/docker-systemctl-replacement/raw/master/files/docker/systemctl3.py` |
+
+#### checkmk_server_web_service
+
+Description: Name of the web service to start and enable
+
+| Distribution | Default |
+| ------------ | ------- |
+| CentOS 8 | `httpd` |
+| Debian 9 | `apache2` |
+| Debian 10 | `apache2` |
+| Ubuntu 18.04 | `apache2` |
 
 ## Dependencies
 

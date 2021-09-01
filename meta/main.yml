@@ -8,10 +8,10 @@ galaxy_info:
   role_name: checkmk_server
   namespace: kso512
   platforms:
-#    - name: EL
-#      versions:
+    - name: EL
+      versions:
 #        - 7
-#        - 8
+        - 8
     - name: Debian
       versions:
         - buster
@@ -28,8 +28,8 @@ galaxy_info:
     - buster
     - stretch
     - bionic
-#    - centos
-#    - el
+    - centos
+    - el
     - monitoring
 dependencies: []
 ...
