@@ -5,3 +5,4 @@
     - name: "Include checkmk_server"
       include_role:
         name: "checkmk_server"
+...

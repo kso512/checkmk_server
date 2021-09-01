@@ -1,6 +1,6 @@
 # [checkmk_server](https://galaxy.ansible.com/kso512/checkmk_server)
 
-[![Ansible role quality](https://img.shields.io/ansible/quality/56133)](https://galaxy.ansible.com/kso512/checkmk_server) [![Ansible role downloads](https://img.shields.io/ansible/role/d/56133)](https://galaxy.ansible.com/kso512/checkmk_server)
+[![Ansible role quality](https://img.shields.io/ansible/quality/56139)](https://galaxy.ansible.com/kso512/checkmk_server) [![Ansible role downloads](https://img.shields.io/ansible/role/d/56139)](https://galaxy.ansible.com/kso512/checkmk_server)
 
 [![CI](https://github.com/kso512/checkmk_server/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/kso512/checkmk_server/actions/workflows/ci.yml) [![GitHub repo size](https://img.shields.io/github/repo-size/kso512/checkmk_server)](https://github.com/kso512/checkmk_server) [![GitHub issues](https://img.shields.io/github/issues-raw/kso512/checkmk_server)](https://github.com/kso512/checkmk_server)
 
@@ -33,7 +33,7 @@ The following distributions have been tested automatically and continuously inte
 
 | Role Version | CheckMK Raw Edition Version |
 | ------------ | --------------------------- |
-| 1.0.0 - 1.0.2 | 2.0.0p9 |
+| 1.0.0 - 1.0.3 | 2.0.0p9 |
 
 ## Requirements
 
