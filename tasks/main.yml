@@ -12,13 +12,6 @@
         - 'vars'
   tags:
     - checkmk-server
-- name: Replace systemctl with docker-systemctl-replacement | GET_URL
-  ansible.builtin.get_url:
-    dest: "{{ checkmk_server_systemctl_dest }}"
-    mode: "{{ checkmk_server_systemctl_mode }}"
-    url: "{{ checkmk_server_systemctl_url }}"
-  tags:
-    - checkmk-server
 - name: Install pre-requisites | APT
   ansible.builtin.apt:
     name: "{{ checkmk_server_prerequisites }}"

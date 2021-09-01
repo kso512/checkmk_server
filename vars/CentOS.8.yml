@@ -6,6 +6,5 @@ checkmk_server_prerequisites:
   - cronie
   - graphviz-gd
   - python3-passlib
-checkmk_server_systemctl_url: "https://github.com/gdraheim/docker-systemctl-replacement/raw/master/files/docker/systemctl3.py"
 checkmk_server_web_service: "httpd"
 ...

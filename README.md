@@ -1,10 +1,10 @@
 # [checkmk_server](https://galaxy.ansible.com/kso512/checkmk_server)
 
-[![Ansible role quality](https://img.shields.io/ansible/quality/56129)](https://galaxy.ansible.com/kso512/checkmk_server) [![Ansible role downloads](https://img.shields.io/ansible/role/d/56129)](https://galaxy.ansible.com/kso512/checkmk_server)
+[![Ansible role quality](https://img.shields.io/ansible/quality/56133)](https://galaxy.ansible.com/kso512/checkmk_server) [![Ansible role downloads](https://img.shields.io/ansible/role/d/56133)](https://galaxy.ansible.com/kso512/checkmk_server)
+
+[![CI](https://github.com/kso512/checkmk_server/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/kso512/checkmk_server/actions/workflows/ci.yml) [![GitHub repo size](https://img.shields.io/github/repo-size/kso512/checkmk_server)](https://github.com/kso512/checkmk_server) [![GitHub issues](https://img.shields.io/github/issues-raw/kso512/checkmk_server)](https://github.com/kso512/checkmk_server)
 
 [![made-with-bash](https://img.shields.io/badge/Made%20with-Bash-1f425f.svg)](https://www.gnu.org/software/bash/) [![made-with-Markdown](https://img.shields.io/badge/Made%20with-Markdown-1f425f.svg)](http://commonmark.org) [![GitHub](https://img.shields.io/github/license/kso512/checkmk_server)](https://www.gnu.org/licenses/gpl-2.0.txt)
-
-[![GitHub repo size](https://img.shields.io/github/repo-size/kso512/checkmk_server)](https://github.com/kso512/checkmk_server) [![GitHub issues](https://img.shields.io/github/issues-raw/kso512/checkmk_server)](https://github.com/kso512/checkmk_server)
 
 An [Ansible](https://www.ansible.com/) [Role](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html) to install [CheckMK RAW edition](https://checkmk.com/product/raw-edition) and set up an initial site.
 
@@ -21,6 +21,7 @@ The following distributions have been tested automatically and continuously inte
 - [Debian 9 "Stretch"](https://www.debian.org/releases/stretch/)
 - [Debian 10 "Buster"](https://www.debian.org/releases/buster/)
 - [Ubuntu 18.04 LTS "Bionic Beaver"](http://releases.ubuntu.com/bionic/)
+- [Ubuntu 20.04 LTS "Focal Fossa"](http://releases.ubuntu.com/focal/)
 
 ...using the following technologies:
 
@@ -32,7 +33,7 @@ The following distributions have been tested automatically and continuously inte
 
 | Role Version | CheckMK Raw Edition Version |
 | ------------ | --------------------------- |
-| 1.0.0 - 1.0.1 | 2.0.0p9 |
+| 1.0.0 - 1.0.2 | 2.0.0p9 |
 
 ## Requirements
 
@@ -79,8 +80,6 @@ For reference, "OMD" below stands for the [Open Monitoring Distribution](https:/
 | checkmk_server_omd_start_command | Command used to start OMD | `omd start {{ checkmk_server_site }}` |
 | checkmk_server_omd_start_creates | File created by starting OMD | `/opt/omd/sites/{{ checkmk_server_site }}/tmp/apache/run/apache.pid` |
 | checkmk_server_site | Name of OMD "site" to create; this is often shown as `my-site` in the CheckMK documentation examples | `test` |
-| checkmk_server_systemctl_dest | File name to replace with the docker-systemctl-replacement script | `/usr/bin/systemctl` |
-| checkmk_server_systemctl_mode | File mode settings of the docker-systemctl-replacement script | `0755` |
 | checkmk_server_version | Version of CheckMK RAW edition to install | `2.0.0p9` |
 
 ### Tables of Variables Unique to at Least One Distribution (with Defaults)
@@ -98,6 +97,7 @@ Description: Filename of the source installation package
 | Debian 9 | `check-mk-raw-{{ checkmk_server_version }}_0.{{ ansible_distribution_release }}_amd64.deb` |
 | Debian 10 | `check-mk-raw-{{ checkmk_server_version }}_0.{{ ansible_distribution_release }}_amd64.deb` |
 | Ubuntu 18.04 | `check-mk-raw-{{ checkmk_server_version }}_0.{{ ansible_distribution_release }}_amd64.deb` |
+| Ubuntu 20.04 | `check-mk-raw-{{ checkmk_server_version }}_0.{{ ansible_distribution_release }}_amd64.deb` |
 
 #### checkmk_server_download_checksum
 
@@ -110,6 +110,7 @@ Description: SHA256 checksum of the source installation package
 | Debian 9 | `sha256:6f7869f4d730be14d61f0ec0ef9e132b0fc1aaa46ccb3f90c58cb5f383e489a8` |
 | Debian 10 | `sha256:e12e5ede139ee1eba9018689c477f30990f32a989306b783eae1f56d0fc5dc7b` |
 | Ubuntu 18.04 | `sha256:aedd9b72aea27b8ceb27a2d25c2606c0a2642146689108af51f514c42ba293cd` |
+| Ubuntu 20.04 | `sha256:a74b642afcc90ccce18d2b19063761481cc5aed4c9085819e5d012e5262966f8` |
 
 #### checkmk_server_prerequisites
 
@@ -122,18 +123,7 @@ Description: Packages needed before installing CheckMK RAW edition
 | Debian 9 | `python-apt` `python-passlib` |
 | Debian 10 | `python3-apt` `python3-passlib` |
 | Ubuntu 18.04 | `python3-apt` `python3-passlib` |
-
-#### checkmk_server_systemctl_url
-
-Description: URL of the docker-systemctl-replacement script
-
-| Distribution | Default |
-| ------------ | ------- |
-| CentOS 7 | `https://github.com/gdraheim/docker-systemctl-replacement/raw/master/files/docker/systemctl.py` |
-| CentOS 8 | `https://github.com/gdraheim/docker-systemctl-replacement/raw/master/files/docker/systemctl3.py` |
-| Debian 9 | `https://github.com/gdraheim/docker-systemctl-replacement/raw/master/files/docker/systemctl.py` |
-| Debian 10 | `https://github.com/gdraheim/docker-systemctl-replacement/raw/master/files/docker/systemctl3.py` |
-| Ubuntu 18.04 | `https://github.com/gdraheim/docker-systemctl-replacement/raw/master/files/docker/systemctl3.py` |
+| Ubuntu 20.04 | `python3-apt` `python3-passlib` |
 
 #### checkmk_server_web_service
 
@@ -146,6 +136,7 @@ Description: Name of the web service to start and enable
 | Debian 9 | `apache2` |
 | Debian 10 | `apache2` |
 | Ubuntu 18.04 | `apache2` |
+| Ubuntu 20.04 | `apache2` |
 
 ## Dependencies
 

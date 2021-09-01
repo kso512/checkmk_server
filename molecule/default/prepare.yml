@@ -1,0 +1,17 @@
+---
+- name: Prepare
+  hosts: all
+  tasks:
+    - name: Replace systemctl with docker-systemctl-replacement - Python 2 | GET_URL
+      ansible.builtin.get_url:
+        dest: "/usr/bin/systemctl"
+        mode: "0755"
+        url: "https://github.com/gdraheim/docker-systemctl-replacement/raw/master/files/docker/systemctl.py"
+      when: discovered_interpreter_python == "/usr/bin/python"
+    - name: Replace systemctl with docker-systemctl-replacement - Python 3 | GET_URL
+      ansible.builtin.get_url:
+        dest: "/usr/bin/systemctl"
+        mode: "0755"
+        url: "https://github.com/gdraheim/docker-systemctl-replacement/raw/master/files/docker/systemctl3.py"
+      when: discovered_interpreter_python == "/usr/bin/python3"
+...

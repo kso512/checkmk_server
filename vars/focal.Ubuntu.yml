@@ -1,7 +1,7 @@
 ---
-# Debian 10 "buster" variables file for checkmk_server
+# default (Ubuntu 20.04 "Focal Fossa") variables file for checkmk_server
 checkmk_server_download: "check-mk-raw-{{ checkmk_server_version }}_0.{{ ansible_distribution_release }}_amd64.deb"
-checkmk_server_download_checksum: "sha256:e12e5ede139ee1eba9018689c477f30990f32a989306b783eae1f56d0fc5dc7b"
+checkmk_server_download_checksum: "sha256:a74b642afcc90ccce18d2b19063761481cc5aed4c9085819e5d012e5262966f8"
 checkmk_server_prerequisites:
   - python3-apt
   - python3-passlib

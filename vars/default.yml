@@ -5,6 +5,5 @@ checkmk_server_download_checksum: "sha256:aedd9b72aea27b8ceb27a2d25c2606c0a26421
 checkmk_server_prerequisites:
   - python3-apt
   - python3-passlib
-checkmk_server_systemctl_url: "https://github.com/gdraheim/docker-systemctl-replacement/raw/master/files/docker/systemctl3.py"
 checkmk_server_web_service: "apache2"
 ...

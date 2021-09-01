@@ -1,8 +1,8 @@
 ---
 galaxy_info:
   author: Chris Lindbergh
-  description: A role to install Check_MK RAW and set up an initial site.
-  company: Cold Creek Solutions, Inc.
+  description: A role to install CheckMK RAW edition and set up an initial site.
+  company: Uplight, Inc.
   license: GPLv2
   min_ansible_version: 2.10.5
   role_name: checkmk_server
@@ -19,6 +19,7 @@ galaxy_info:
     - name: Ubuntu
       versions:
         - bionic
+        - focal
   galaxy_tags:
     - checkmk
     - raw
@@ -28,6 +29,7 @@ galaxy_info:
     - buster
     - stretch
     - bionic
+    - focal
     - centos
     - el
     - monitoring
