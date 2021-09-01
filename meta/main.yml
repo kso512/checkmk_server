@@ -15,7 +15,7 @@ galaxy_info:
     - name: Debian
       versions:
         - buster
-#        - stretch
+        - stretch
     - name: Ubuntu
       versions:
         - bionic
@@ -26,7 +26,7 @@ galaxy_info:
     - ubuntu
     - debian
     - buster
-#    - stretch
+    - stretch
     - bionic
 #    - centos
 #    - el

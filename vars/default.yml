@@ -1,4 +1,7 @@
 ---
 # default (Ubuntu 18.04 "Bionic Beaver") variables file for checkmk_server
 checkmk_server_download_checksum: "sha256:aedd9b72aea27b8ceb27a2d25c2606c0a2642146689108af51f514c42ba293cd"
+checkmk_server_prerequisites:
+  - python3-apt
+  - python3-passlib
 ...

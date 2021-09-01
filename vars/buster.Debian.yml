@@ -1,4 +1,7 @@
 ---
 # Debian 10 "buster" variables file for checkmk_server
 checkmk_server_download_checksum: "sha256:e12e5ede139ee1eba9018689c477f30990f32a989306b783eae1f56d0fc5dc7b"
+checkmk_server_prerequisites:
+  - python3-apt
+  - python3-passlib
 ...
