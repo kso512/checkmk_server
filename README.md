@@ -1,8 +1,8 @@
 # [checkmk_server](https://galaxy.ansible.com/kso512/checkmk_server)
 
-[![Ansible role quality](https://img.shields.io/ansible/quality/56139)](https://galaxy.ansible.com/kso512/checkmk_server) [![Ansible role downloads](https://img.shields.io/ansible/role/d/56139)](https://galaxy.ansible.com/kso512/checkmk_server)
+[![Ansible role quality](https://img.shields.io/ansible/quality/56139)](https://galaxy.ansible.com/kso512/checkmk_server) [![Ansible role downloads](https://img.shields.io/ansible/role/d/56139)](https://galaxy.ansible.com/kso512/checkmk_server) [![GitHub repo size](https://img.shields.io/github/repo-size/kso512/checkmk_server)](https://github.com/kso512/checkmk_server)
 
-[![CI](https://github.com/kso512/checkmk_server/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/kso512/checkmk_server/actions/workflows/ci.yml) [![GitHub repo size](https://img.shields.io/github/repo-size/kso512/checkmk_server)](https://github.com/kso512/checkmk_server) [![GitHub issues](https://img.shields.io/github/issues-raw/kso512/checkmk_server)](https://github.com/kso512/checkmk_server)
+[![CI](https://github.com/kso512/checkmk_server/actions/workflows/ci.yml/badge.svg)](https://github.com/kso512/checkmk_server/actions/workflows/ci.yml) [![Release](https://github.com/kso512/checkmk_server/actions/workflows/release.yml/badge.svg)](https://github.com/kso512/checkmk_server/actions/workflows/release.yml) [![GitHub issues](https://img.shields.io/github/issues-raw/kso512/checkmk_server)](https://github.com/kso512/checkmk_server)
 
 [![made-with-bash](https://img.shields.io/badge/Made%20with-Bash-1f425f.svg)](https://www.gnu.org/software/bash/) [![made-with-Markdown](https://img.shields.io/badge/Made%20with-Markdown-1f425f.svg)](http://commonmark.org) [![GitHub](https://img.shields.io/github/license/kso512/checkmk_server)](https://www.gnu.org/licenses/gpl-2.0.txt)
 
@@ -34,6 +34,8 @@ The following distributions have been tested automatically and continuously inte
 | Role Version | CheckMK Raw Edition Version |
 | ------------ | --------------------------- |
 | 1.0.0 - 1.0.3 | 2.0.0p9 |
+| [skipped](https://forum.checkmk.com/t/release-checkmk-stable-release-2-0-0p10/27023) | 2.0.0p10 |
+| 1.0.4 | 2.0.0p11 |
 
 ## Requirements
 
@@ -80,7 +82,7 @@ For reference, "OMD" below stands for the [Open Monitoring Distribution](https:/
 | checkmk_server_omd_start_command | Command used to start OMD | `omd start {{ checkmk_server_site }}` |
 | checkmk_server_omd_start_creates | File created by starting OMD | `/opt/omd/sites/{{ checkmk_server_site }}/tmp/apache/run/apache.pid` |
 | checkmk_server_site | Name of OMD "site" to create; this is often shown as `my-site` in the CheckMK documentation examples | `test` |
-| checkmk_server_version | Version of CheckMK RAW edition to install | `2.0.0p9` |
+| checkmk_server_version | Version of CheckMK RAW edition to install | `2.0.0p11` |
 
 ### Tables of Variables Unique to at Least One Distribution (with Defaults)
 
