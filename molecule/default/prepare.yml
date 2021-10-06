@@ -2,6 +2,8 @@
 - name: Prepare
   hosts: all
   tasks:
+    # Systemd + Docker + I just want to test my app = wasted time
+    # so we use this awesome shim by @gdraheim:
     - name: Replace systemctl with docker-systemctl-replacement - Python 2 | GET_URL
       ansible.builtin.get_url:
         dest: "/usr/bin/systemctl"
@@ -14,4 +16,11 @@
         mode: "0755"
         url: "https://github.com/gdraheim/docker-systemctl-replacement/raw/master/files/docker/systemctl3.py"
       when: ansible_python.version.major == 3
+    # https://letsencrypt.org/docs/dst-root-ca-x3-expiration-september-2021/
+    - name: Update ca-certificates to fix LetsEncrypt certificate expiration | YUM
+      ansible.builtin.yum:
+        name: "ca-certificates"
+        state: "latest"
+        update_only: "yes"
+      when: ansible_pkg_mgr == "yum"
 ...
