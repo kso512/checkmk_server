@@ -1,7 +1,7 @@
 ---
 # Debian 9 "stretch" variables file for checkmk_server
 checkmk_server_download: "check-mk-raw-{{ checkmk_server_version }}_0.{{ ansible_distribution_release }}_amd64.deb"
-checkmk_server_download_checksum: "sha256:138a814e3265275731b35be4aa26ff1cafd35fc79d6266ff8444b6f896c0d6ad"
+checkmk_server_download_checksum: "sha256:c9b5d76a5e25b281a65f0ffa490efbfdc6baea0aded6efcba49a732750e41bdf"
 checkmk_server_prerequisites:
   - python-apt
   - python-passlib
