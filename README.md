@@ -20,6 +20,7 @@ The following distributions have been tested automatically and continuously inte
 - [CentOS-8](https://wiki.centos.org/Manuals/ReleaseNotes/CentOS8.1905)
 - [Debian 9 "Stretch"](https://www.debian.org/releases/stretch/)
 - [Debian 10 "Buster"](https://www.debian.org/releases/buster/)
+- [Debian 11 "Bullseye"](https://www.debian.org/releases/bullseye/)
 - [Ubuntu 18.04 LTS "Bionic Beaver"](http://releases.ubuntu.com/bionic/)
 - [Ubuntu 20.04 LTS "Focal Fossa"](http://releases.ubuntu.com/focal/)
 
@@ -37,6 +38,7 @@ The following distributions have been tested automatically and continuously inte
 | [skipped](https://forum.checkmk.com/t/release-checkmk-stable-release-2-0-0p10/27023) | 2.0.0p10 |
 | 1.0.4 | 2.0.0p11 |
 | 1.0.5 | 2.0.0p12 |
+| 1.0.6 | 2.0.0p13 |
 
 ## Requirements
 
@@ -83,7 +85,7 @@ For reference, "OMD" below stands for the [Open Monitoring Distribution](https:/
 | checkmk_server_omd_start_command | Command used to start OMD | `omd start {{ checkmk_server_site }}` |
 | checkmk_server_omd_start_creates | File created by starting OMD | `/opt/omd/sites/{{ checkmk_server_site }}/tmp/apache/run/apache.pid` |
 | checkmk_server_site | Name of OMD "site" to create; this is often shown as `my-site` in the CheckMK documentation examples | `test` |
-| checkmk_server_version | Version of CheckMK RAW edition to install | `2.0.0p12` |
+| checkmk_server_version | Version of CheckMK RAW edition to install | `2.0.0p13` |
 
 ### Tables of Variables Unique to at Least One Distribution (with Defaults)
 
@@ -99,6 +101,7 @@ Description: Filename of the source installation package
 | CentOS 8 | `check-mk-raw-{{ checkmk_server_version }}-el{{ ansible_distribution_major_version }}-38.x86_64.rpm` |
 | Debian 9 | `check-mk-raw-{{ checkmk_server_version }}_0.{{ ansible_distribution_release }}_amd64.deb` |
 | Debian 10 | `check-mk-raw-{{ checkmk_server_version }}_0.{{ ansible_distribution_release }}_amd64.deb` |
+| Debian 11 | `check-mk-raw-{{ checkmk_server_version }}_0.{{ ansible_distribution_release }}_amd64.deb` |
 | Ubuntu 18.04 | `check-mk-raw-{{ checkmk_server_version }}_0.{{ ansible_distribution_release }}_amd64.deb` |
 | Ubuntu 20.04 | `check-mk-raw-{{ checkmk_server_version }}_0.{{ ansible_distribution_release }}_amd64.deb` |
 
@@ -108,12 +111,13 @@ Description: SHA256 checksum of the source installation package
 
 | Distribution | Default |
 | ------------ | ------- |
-| CentOS 7 | `sha256:9920707e488c2b52d4f9927f304e4652a0a6a48f1c669ab9e101a1fb297f030c` |
-| CentOS 8 | `sha256:063a190ad051cadbfc24e6047d8e92152ed3f1be484b15386006cd495a7874f4` |
-| Debian 9 | `sha256:c9b5d76a5e25b281a65f0ffa490efbfdc6baea0aded6efcba49a732750e41bdf` |
-| Debian 10 | `sha256:94fa662a85e1913179f5377d2c7565ba34b13d42fe5c74aab58d988dcf1c8e3d` |
-| Ubuntu 18.04 | `sha256:d35aa30fa825fd90e6423ba588b7e8e1c89827c063ab393596638febc721ca02` |
-| Ubuntu 20.04 | `sha256:752487938ce7277c6a6f9e4949577965123ded34452b6c823c220edf3f2a9176` |
+| CentOS 7 | `sha256:96b50bc1ce6c58479aa06bda80be66841c79485bc069f02efb05db002dac69f6` |
+| CentOS 8 | `sha256:bc1b7bc91fda4139a7457ff112f993725c7e000208fe67367838cf83c09066ae` |
+| Debian 9 | `sha256:e05f5b9111537e6551c8df5dc960b2ab29a8c2fd2a592c23116c2abe4cf53a32` |
+| Debian 10 | `sha256:37f3d61f753e32c3e0b402e6fb4bbdc58f87b11b4bbd55ed69d31471ab969284` |
+| Debian 11 | `sha256:369bd2d59c8227acf6f501f4b19fee2d3ff4c3d2e1216c0c37826cb87a4376eb` |
+| Ubuntu 18.04 | `sha256:623d49fed10413958921ac13436f7a3e69e6cf572f40a22aff0c959cff2b2c03` |
+| Ubuntu 20.04 | `sha256:41ba86e16cf0f8eb4fb89a3b8d7693d86ecf68d57cc65dd754738a6be87b96db` |
 
 #### checkmk_server_prerequisites
 
@@ -125,6 +129,7 @@ Description: Packages needed before installing CheckMK RAW edition
 | CentOS 8 | `cronie` `graphviz-gd` `python3-passlib` |
 | Debian 9 | `python-apt` `python-passlib` |
 | Debian 10 | `python3-apt` `python3-passlib` |
+| Debian 11 | `python3-apt` `python3-passlib` |
 | Ubuntu 18.04 | `python3-apt` `python3-passlib` |
 | Ubuntu 20.04 | `python3-apt` `python3-passlib` |
 
@@ -138,6 +143,7 @@ Description: Name of the web service to start and enable
 | CentOS 8 | `httpd` |
 | Debian 9 | `apache2` |
 | Debian 10 | `apache2` |
+| Debian 11 | `apache2` |
 | Ubuntu 18.04 | `apache2` |
 | Ubuntu 20.04 | `apache2` |
 

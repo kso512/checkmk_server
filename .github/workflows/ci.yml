@@ -20,6 +20,7 @@ jobs:
           - distro: centos8
           - distro: debian9
           - distro: debian10
+          - distro: debian11
           - distro: ubuntu1804
           - distro: ubuntu2004
     steps:
