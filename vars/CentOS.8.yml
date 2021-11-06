@@ -1,7 +1,7 @@
 ---
 # CentOS-8 variables file for checkmk_server
 checkmk_server_download: "check-mk-raw-{{ checkmk_server_version }}-el{{ ansible_distribution_major_version }}-38.x86_64.rpm"
-checkmk_server_download_checksum: "sha256:08d2567a3bc05cdf529453dc97ab0a968547b2ff474f8e8a704cf4b6bf775ab6"
+checkmk_server_download_checksum: "sha256:89fd81102bbabbe29b7bbaf5218b8a17570aefeeef07bbed31dc707583fd90ad"
 checkmk_server_prerequisites:
   - cronie
   - graphviz-gd
