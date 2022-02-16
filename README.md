@@ -16,7 +16,6 @@ All tasks are tagged with `checkmk-server`.
 
 The following distributions have been tested automatically and continuously integrated:
 
-- [CentOS-8](https://wiki.centos.org/Manuals/ReleaseNotes/CentOS8.1905)
 - [Debian 9 "Stretch"](https://www.debian.org/releases/stretch/)
 - [Debian 10 "Buster"](https://www.debian.org/releases/buster/)
 - [Debian 11 "Bullseye"](https://www.debian.org/releases/bullseye/)
@@ -33,6 +32,7 @@ The following distributions have been tested automatically and continuously inte
 
 | CheckMK Raw Edition Version | Role Version |
 | --------------------------- | ------------ |
+| 2.0.0p20 | 1.0.13 |
 | 2.0.0p19 | 1.0.12 |
 | 2.0.0p18 | 1.0.11 |
 | 2.0.0p17 | 1.0.10 |
@@ -66,6 +66,7 @@ For reference, "OMD" below stands for the [Open Monitoring Distribution](https:/
 | checkmk_server_adminpw | Password for the `cmkadmin` user created for the test site; if left blank, the password for this user can be found in the `checkmk_server_log_dest` file created on the remote instance | undefined |
 | checkmk_server_base_url | Base URL that other URLs are based on | `https://download.checkmk.com/checkmk` |
 | checkmk_server_cache_valid_time | Update the apt cache if it is older than this time, in seconds. | `3600` |
+| checkmk_server_download | Filename of the source installation package | `check-mk-raw-{{ checkmk_server_version }}_0.{{ ansible_distribution_release }}_amd64.deb` |
 | checkmk_server_download_dest | Final full path of the source installation package | `{{ checkmk_server_download_dest_folder }}/{{ checkmk_server_download }}` |
 | checkmk_server_download_dest_folder | Destination folder of the source installation package | `/opt` |
 | checkmk_server_download_mode | File mode settings of the source installation package | `0755` |
@@ -90,24 +91,12 @@ For reference, "OMD" below stands for the [Open Monitoring Distribution](https:/
 | checkmk_server_omd_start_command | Command used to start OMD | `omd start {{ checkmk_server_site }}` |
 | checkmk_server_omd_start_creates | File created by starting OMD | `/opt/omd/sites/{{ checkmk_server_site }}/tmp/apache/run/apache.pid` |
 | checkmk_server_site | Name of OMD "site" to create; this is often shown as `my-site` in the CheckMK documentation examples | `test` |
-| checkmk_server_version | Version of CheckMK RAW edition to install | `2.0.0p19` |
+| checkmk_server_version | Version of CheckMK RAW edition to install | `2.0.0p20` |
+| checkmk_server_web_service | Name of the web service to start and enable | `apache2` |
 
 ### Tables of Variables Unique to at Least One Distribution (with Defaults)
 
 To enable multi-distro support, the role defines distro-specific variables with the [`include_vars` and `with_first_found`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/include_vars_module.html) mechanisms.
-
-#### checkmk_server_download
-
-Description: Filename of the source installation package
-
-| Distribution | Default |
-| ------------ | ------- |
-| CentOS 8 | `check-mk-raw-{{ checkmk_server_version }}-el{{ ansible_distribution_major_version }}-38.x86_64.rpm` |
-| Debian 9 | `check-mk-raw-{{ checkmk_server_version }}_0.{{ ansible_distribution_release }}_amd64.deb` |
-| Debian 10 | `check-mk-raw-{{ checkmk_server_version }}_0.{{ ansible_distribution_release }}_amd64.deb` |
-| Debian 11 | `check-mk-raw-{{ checkmk_server_version }}_0.{{ ansible_distribution_release }}_amd64.deb` |
-| Ubuntu 18.04 | `check-mk-raw-{{ checkmk_server_version }}_0.{{ ansible_distribution_release }}_amd64.deb` |
-| Ubuntu 20.04 | `check-mk-raw-{{ checkmk_server_version }}_0.{{ ansible_distribution_release }}_amd64.deb` |
 
 #### checkmk_server_download_checksum
 
@@ -115,12 +104,11 @@ Description: SHA256 checksum of the source installation package
 
 | Distribution | Default |
 | ------------ | ------- |
-| CentOS 8 | `sha256:83e304b441888e93d5ced185786b251f68e2a78aa67003fbf182c63212b5c56c` |
-| Debian 9 | `sha256:0483ad794f4624345fe525d30d055259bbc629463c6b1909b9d004801bbf52a4` |
-| Debian 10 | `sha256:5002b9218aa51303ded4faa7e2b0f57b45668c25bf7089795fde987a25070382` |
-| Debian 11 | `sha256:b9ba3bb92844373c3042e5b897d8a424fb5bb9ba512a2bbcd5da8f3c8f9cf749` |
-| Ubuntu 18.04 | `sha256:b8a503e4ff317afd81fa3979d1976f08b64cd48fe0c255a93779ac18a2ed7969` |
-| Ubuntu 20.04 | `sha256:71224c0bdf87fbf24e67323fac30c40637b854e4e82f64d809e83b0dfb5a205f` |
+| Debian 9 | `sha256:c2532e015222b2888e1f6c54d1f5e2d6ee5fa7f1bb9104c2d3fec7d87fae77bc` |
+| Debian 10 | `sha256:c4285c98eb63dea728b8ce86ac71dd11fa3ae4df129331692a52bff3f8250026` |
+| Debian 11 | `sha256:cb4daf0a329dac46ba7233ba1aebf9fd332ba303aa26b4d732015030353cc299` |
+| Ubuntu 18.04 | `sha256:ac0559f8a7d69cff050db3cbacf573293a486d5860ad771b3b26bc7a056dbc11` |
+| Ubuntu 20.04 | `sha256:6a4b5176fbf21cfc62320744969e2c72b3a641dcf1627a9c3c0c1b65d748cd45` |
 
 #### checkmk_server_prerequisites
 
@@ -128,25 +116,11 @@ Description: Packages needed before installing CheckMK RAW edition
 
 | Distribution | Default |
 | ------------ | ------- |
-| CentOS 8 | `cronie` `graphviz-gd` `python3-passlib` |
 | Debian 9 | `python-apt` `python-passlib` |
 | Debian 10 | `python3-apt` `python3-passlib` |
 | Debian 11 | `python3-apt` `python3-passlib` |
 | Ubuntu 18.04 | `python3-apt` `python3-passlib` |
 | Ubuntu 20.04 | `python3-apt` `python3-passlib` |
-
-#### checkmk_server_web_service
-
-Description: Name of the web service to start and enable
-
-| Distribution | Default |
-| ------------ | ------- |
-| CentOS 8 | `httpd` |
-| Debian 9 | `apache2` |
-| Debian 10 | `apache2` |
-| Debian 11 | `apache2` |
-| Ubuntu 18.04 | `apache2` |
-| Ubuntu 20.04 | `apache2` |
 
 ## Dependencies
 

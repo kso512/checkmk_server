@@ -16,7 +16,6 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - distro: centos8
           - distro: debian9
           - distro: debian10
           - distro: debian11

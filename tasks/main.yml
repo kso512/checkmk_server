@@ -18,31 +18,6 @@
     state: present
     update_cache: yes
     cache_valid_time: "{{ checkmk_server_cache_valid_time }}"
-  when: ansible_pkg_mgr == "apt"
-  tags:
-    - checkmk-server
-- name: Install pre-requisites | DNF
-  ansible.builtin.dnf:
-    name: "{{ checkmk_server_prerequisites }}"
-    state: present
-    update_cache: yes
-    enablerepo: "PowerTools"
-  when: ansible_pkg_mgr == "dnf"
-  tags:
-    - checkmk-server
-- name: Install pre-requisites | YUM
-  ansible.builtin.yum:
-    name: "{{ checkmk_server_prerequisites }}"
-    state: present
-    update_cache: yes
-  when: ansible_pkg_mgr == "yum"
-  tags:
-    - checkmk-server
-- name: Import a key from a URL | RPM_KEY
-  ansible.builtin.rpm_key:
-    key: "{{ checkmk_server_key_url }}"
-    state: present
-  when: ansible_pkg_mgr != "apt"
   tags:
     - checkmk-server
 - name: Download CheckMK RAW | GET_URL
@@ -66,21 +41,6 @@
     state: present
     update_cache: yes
     cache_valid_time: "{{ checkmk_server_cache_valid_time }}"
-  when: ansible_pkg_mgr == "apt"
-  tags:
-    - checkmk-server
-- name: Install CheckMK RAW | DNF
-  ansible.builtin.dnf:
-    name: "{{ checkmk_server_install_package }}"
-    state: present
-  when: ansible_pkg_mgr == "dnf"
-  tags:
-    - checkmk-server
-- name: Install CheckMK RAW | YUM
-  ansible.builtin.yum:
-    name: "{{ checkmk_server_install_package }}"
-    state: present
-  when: ansible_pkg_mgr == "yum"
   tags:
     - checkmk-server
 - name: Setup OMD | COMMAND
