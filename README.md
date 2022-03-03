@@ -28,22 +28,15 @@ The following distributions have been tested automatically and continuously inte
 - [GitHub Actions](https://github.com/features/actions)
 - [docker-systemctl-replacement](https://github.com/gdraheim/docker-systemctl-replacement) by [@gdraheim](https://github.com/gdraheim)
 
-## Version Matrix
+## Recent Version Matrix
 
 | CheckMK Raw Edition Version | Role Version |
 | --------------------------- | ------------ |
+| 2.0.0p21 | 1.0.14 |
 | 2.0.0p20 | 1.0.13 |
 | 2.0.0p19 | 1.0.12 |
 | 2.0.0p18 | 1.0.11 |
 | 2.0.0p17 | 1.0.10 |
-| 2.0.0p16 | 1.0.9  |
-| 2.0.0p15 | 1.0.8  |
-| 2.0.0p14 | 1.0.7  |
-| 2.0.0p13 | 1.0.6  |
-| 2.0.0p12 | 1.0.5  |
-| 2.0.0p11 | 1.0.4  |
-| 2.0.0p10 | [skipped](https://forum.checkmk.com/t/release-checkmk-stable-release-2-0-0p10/27023) |
-| 2.0.0p9  | 1.0.0 - 1.0.3 |
 
 ## Requirements
 
@@ -91,7 +84,7 @@ For reference, "OMD" below stands for the [Open Monitoring Distribution](https:/
 | checkmk_server_omd_start_command | Command used to start OMD | `omd start {{ checkmk_server_site }}` |
 | checkmk_server_omd_start_creates | File created by starting OMD | `/opt/omd/sites/{{ checkmk_server_site }}/tmp/apache/run/apache.pid` |
 | checkmk_server_site | Name of OMD "site" to create; this is often shown as `my-site` in the CheckMK documentation examples | `test` |
-| checkmk_server_version | Version of CheckMK RAW edition to install | `2.0.0p20` |
+| checkmk_server_version | Version of CheckMK RAW edition to install | `2.0.0p21` |
 | checkmk_server_web_service | Name of the web service to start and enable | `apache2` |
 
 ### Tables of Variables Unique to at Least One Distribution (with Defaults)
@@ -104,11 +97,11 @@ Description: SHA256 checksum of the source installation package
 
 | Distribution | Default |
 | ------------ | ------- |
-| Debian 9 | `sha256:c2532e015222b2888e1f6c54d1f5e2d6ee5fa7f1bb9104c2d3fec7d87fae77bc` |
-| Debian 10 | `sha256:c4285c98eb63dea728b8ce86ac71dd11fa3ae4df129331692a52bff3f8250026` |
-| Debian 11 | `sha256:cb4daf0a329dac46ba7233ba1aebf9fd332ba303aa26b4d732015030353cc299` |
-| Ubuntu 18.04 | `sha256:ac0559f8a7d69cff050db3cbacf573293a486d5860ad771b3b26bc7a056dbc11` |
-| Ubuntu 20.04 | `sha256:6a4b5176fbf21cfc62320744969e2c72b3a641dcf1627a9c3c0c1b65d748cd45` |
+| Debian 9 | `sha256:a5e9d42c7278a7a60782564c4a22dc2f2293a5e25db7ea71860fbe186b9d08fb` |
+| Debian 10 | `sha256:757365569105ab294db34fadb387d65ba6dba55750870cebafe0dc63e8a3dc91` |
+| Debian 11 | `sha256:5b81f19457ed1ed9994ceed38df8cab7c8c60466ae4df9984cfb3f748300f2bb` |
+| Ubuntu 18.04 | `sha256:40410aec65c1b1d9a8bf7d4b60bda376f3501d8885393e356e2019962cf86eb4` |
+| Ubuntu 20.04 | `sha256:d736f37163dc37367a58a41089fe3fcecfa4286ca9502a97ab954ae48013c044` |
 
 #### checkmk_server_prerequisites
 
