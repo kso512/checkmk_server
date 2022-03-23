@@ -3,6 +3,6 @@
   hosts: all
   tasks:
     - name: "Include checkmk_server"
-      include_role:
+      ansible.builtin.include_role:
         name: "checkmk_server"
 ...
