@@ -32,7 +32,7 @@ The following distributions have been tested automatically and continuously inte
 
 | CheckMK Raw Edition Version | Role Version |
 | --------------------------- | ------------ |
-| 2.0.0p23 | 1.0.16 |
+| 2.0.0p23 | 1.0.16 - 1.0.17 |
 | 2.0.0p22 | 1.0.15 |
 | 2.0.0p21 | 1.0.14 |
 | 2.0.0p20 | 1.0.13 |
