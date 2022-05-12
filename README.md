@@ -28,29 +28,48 @@ The following distributions have been tested automatically and continuously inte
 - [GitHub Actions](https://github.com/features/actions)
 - [docker-systemctl-replacement](https://github.com/gdraheim/docker-systemctl-replacement) by [@gdraheim](https://github.com/gdraheim)
 
+For reference, "OMD" below stands for the [Open Monitoring Distribution](https://checkmk.com/guides/open-monitoring-distribution) which is a predecessor of CheckMK RAW edition.  Those "omd" commands were left in for backwards compatibility.
+
 ## Recent Version Matrix
 
 | CheckMK Raw Edition Version | Role Version |
 | --------------------------- | ------------ |
+| 2.0.0p24 | 1.0.18 |
 | 2.0.0p23 | 1.0.16 - 1.0.17 |
 | 2.0.0p22 | 1.0.15 |
 | 2.0.0p21 | 1.0.14 |
 | 2.0.0p20 | 1.0.13 |
-| 2.0.0p19 | 1.0.12 |
 
 ## Requirements
 
-If the server has a firewall enabled, it may need to be altered to allow incoming packets on TCP port 80 for the web portal access, and/or TCP port 514, plus UDP ports 162 & 514 for event console input.
+If the server has a firewall enabled, it may need to be altered to allow incoming packets on TCP port 80 for the web portal access, and/or TCP port 514, plus UDP ports 162 & 514 for event console (syslog) input.
 
 As with any modern Linux deployment, SELinux may come into play.
 
 To fulfill these requirements, I recommend using another Ansible Role.
 
+## Upkeep (updates and out-dated versions)
+
+While this role does install the latest stable version of CheckMK, it does not apply any update commands to existing deployments.  This is to avoid clobbering production sites and allow for oversight during upgrades.
+
+These steps may be followed to enact an upgrade on a site named "test" after running a newer update of this role; change "test" to the name of the site you want to upgrade:
+
+1. Become the "test" user: `$ sudo su - test`
+1. Stop the "test" site: `$ omd stop`
+1. Update the "test" site; to complete this step you need to interact with the text interface as well: `$ omd update`
+1. Start the "test" site: `$ omd start`
+
+If you have many sites to upgrade, the following one-liner may help.  Just change the `site` variable declaration as needed:
+
+    site=test ; sudo omd stop $site ; sudo omd update $site ; sudo omd start $site
+
+In the same manner, older versions are left on the systems by this role and it is up to the administrator to remove unneeded versions.
+
+Use this command to remove all unneeded CheckMK versions: `$ sudo omd cleanup`
+
 ## Role Variables
 
 Some of these may be seem redundant but are specified so future users can override them with local variables as needed.
-
-For reference, "OMD" below stands for the [Open Monitoring Distribution](https://checkmk.com/guides/open-monitoring-distribution) which is a predecessor of CheckMK RAW edition.  Those "omd" commands were left in for backwards compatibility.
 
 ### Table of Variables Common to All Distributions (with Defaults)
 
@@ -84,7 +103,7 @@ For reference, "OMD" below stands for the [Open Monitoring Distribution](https:/
 | checkmk_server_omd_start_command | Command used to start OMD | `omd start {{ checkmk_server_site }}` |
 | checkmk_server_omd_start_creates | File created by starting OMD | `/opt/omd/sites/{{ checkmk_server_site }}/tmp/apache/run/apache.pid` |
 | checkmk_server_site | Name of OMD "site" to create; this is often shown as `my-site` in the CheckMK documentation examples | `test` |
-| checkmk_server_version | Version of CheckMK RAW edition to install | `2.0.0p23` |
+| checkmk_server_version | Version of CheckMK RAW edition to install | `2.0.0p24` |
 | checkmk_server_web_service | Name of the web service to start and enable | `apache2` |
 
 ### Tables of Variables Unique to at Least One Distribution (with Defaults)
@@ -97,11 +116,11 @@ Description: SHA256 checksum of the source installation package
 
 | Distribution | Default |
 | ------------ | ------- |
-| Debian 9 | `sha256:847c2bf99d321bfc1f414c1f482d5aedb70ca6fbd19a40bc59e10948aa4e1993` |
-| Debian 10 | `sha256:698d30466dfcb9c3cb9d6e7810764491fe2404f4388deb4dd5442c91e22c1ec2` |
-| Debian 11 | `sha256:7aab596a457eb63742d7a0cbecb3b716a876c36e46b712c1494cb3b48a499e94` |
-| Ubuntu 18.04 | `sha256:dbdf586dc7dd6bf5d0dda024eb60cc35dd0000702a98a75a75bc57770570ea80` |
-| Ubuntu 20.04 | `sha256:6f35451a0564694ea36f14f5560773dee3a2747c4bbd59cc167beae8f19cd0c8` |
+| Debian 9 | `sha256:2714488e4a873a71e356c178c719d00fcfa0691440d1875d6475e7ee52db9d65` |
+| Debian 10 | `sha256:a68092237804b10e04f20348f14afea40e36b5e6033460ec6f2a2ea4e2027524` |
+| Debian 11 | `sha256:7fe044e603603071873f4349fcc6b8ba8ad91790af0332160d0b05b3b32b867d` |
+| Ubuntu 18.04 | `sha256:845d5b714fef5a5b381573a5916f150b8b4b2618e538cce2ef3231c6808abdbb` |
+| Ubuntu 20.04 | `sha256:7ce78b38f40d1b49c4f416fec33c5c881a829c61cfb984631b051d0aff32ecf1` |
 
 #### checkmk_server_prerequisites
 
