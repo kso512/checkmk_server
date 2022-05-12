@@ -34,7 +34,7 @@ For reference, "OMD" below stands for the [Open Monitoring Distribution](https:/
 
 | CheckMK Raw Edition Version | Role Version |
 | --------------------------- | ------------ |
-| 2.0.0p24 | 1.0.18 |
+| 2.0.0p24 | 1.0.18 - 1.0.19 |
 | 2.0.0p23 | 1.0.16 - 1.0.17 |
 | 2.0.0p22 | 1.0.15 |
 | 2.0.0p21 | 1.0.14 |
