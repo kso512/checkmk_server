@@ -26,6 +26,6 @@ checkmk_server_omd_setup_creates: "/opt/omd"
 checkmk_server_omd_start_command: "omd start {{ checkmk_server_site }}"
 checkmk_server_omd_start_creates: "/opt/omd/sites/{{ checkmk_server_site }}/tmp/apache/run/apache.pid"
 checkmk_server_site: "test"
-checkmk_server_version: "2.1.0"
+checkmk_server_version: "2.1.0p1"
 checkmk_server_web_service: "apache2"
 ...
