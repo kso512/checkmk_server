@@ -34,11 +34,11 @@ For reference, "OMD" below stands for the [Open Monitoring Distribution](https:/
 
 | CheckMK Raw Edition Version | Role Version |
 | --------------------------- | ------------ |
+| 2.1.0p2 | 1.0.22 |
 | 2.1.0p1 | 1.0.21 |
 | 2.1.0 | 1.0.20 |
 | 2.0.0p24 | 1.0.18 - 1.0.19 |
 | 2.0.0p23 | 1.0.16 - 1.0.17 |
-| 2.0.0p22 | 1.0.15 |
 
 ## Requirements
 
@@ -103,7 +103,7 @@ Some of these may be seem redundant but are specified so future users can overri
 | checkmk_server_omd_start_command | Command used to start OMD | `omd start {{ checkmk_server_site }}` |
 | checkmk_server_omd_start_creates | File created by starting OMD | `/opt/omd/sites/{{ checkmk_server_site }}/tmp/apache/run/apache.pid` |
 | checkmk_server_site | Name of OMD "site" to create; this is often shown as `my-site` in the CheckMK documentation examples | `test` |
-| checkmk_server_version | Version of CheckMK RAW edition to install | `2.1.0p1` |
+| checkmk_server_version | Version of CheckMK RAW edition to install | `2.1.0p2` |
 | checkmk_server_web_service | Name of the web service to start and enable | `apache2` |
 
 ### Tables of Variables Unique to at Least One Distribution (with Defaults)
@@ -116,11 +116,11 @@ Description: SHA256 checksum of the source installation package
 
 | Distribution | Default |
 | ------------ | ------- |
-| Debian 9 | `sha256:c7814a16d291bb07707b13f9bc2e3dffab1009cb436f0b6341d7a5a205c7f10d` |
-| Debian 10 | `sha256:a6b9979db0eb05fa609986de757613b12888a2659069f709469e1b9ae9267895` |
-| Debian 11 | `sha256:ece8a5626bd11f6639c4769f513d08acdbcf2a8743c7208294fc62491de04357` |
-| Ubuntu 18.04 | `sha256:090bdb9b41e3a58b46395440f112cf6c4112042d6932c3a16affad2c3bc24cf9` |
-| Ubuntu 20.04 | `sha256:3d28d24eb3828c44a2d2ff6ae17dd83e2b08c1763efee9132ffbf4822a2c6d9b` |
+| Debian 9 | `sha256:4516d5dc1b37240844fe52c6cd7bf7d502b9c88202aa56d1932b078cd1f6c64e` |
+| Debian 10 | `sha256:c7157cb8391bf5b367b529e428fccb512c578e2769cd203e162ec42218433ae2` |
+| Debian 11 | `sha256:4db32d23523053ed028cf13d242b1972a406c9deeb6d80e277c6180200b2e263` |
+| Ubuntu 18.04 | `sha256:83dc20fa5ca2bc267673b5b4ef1474ede9884f629a3178d2f3f6654ae53669c9` |
+| Ubuntu 20.04 | `sha256:d249c94ca63eb7b5dd8e336b09cd113f6dd0ff194ea6131cf8a61418c778b632` |
 
 #### checkmk_server_prerequisites
 
