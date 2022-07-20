@@ -32,13 +32,13 @@ For reference, "OMD" below stands for the [Open Monitoring Distribution](https:/
 
 ## Recent Version Matrix
 
-| CheckMK Raw Edition Version | Role Version |
+| CheckMK Raw Edition Version | Role Version/Tag |
 | --------------------------- | ------------ |
+| 2.1.0p8 | 1.0.26 |
+| 2.1.0p7 | [N/A](https://forum.checkmk.com/t/release-checkmk-stable-release-2-1-0p7/32704/2) |
 | 2.1.0p6 | 1.0.25 |
 | 2.1.0p4 | 1.0.24 |
 | 2.1.0p3 | 1.0.23 |
-| 2.1.0p2 | 1.0.22 |
-| 2.1.0p1 | 1.0.21 |
 
 ## Requirements
 
@@ -103,7 +103,7 @@ Some of these may be seem redundant but are specified so future users can overri
 | checkmk_server_omd_start_command | Command used to start OMD | `omd start {{ checkmk_server_site }}` |
 | checkmk_server_omd_start_creates | File created by starting OMD | `/opt/omd/sites/{{ checkmk_server_site }}/tmp/apache/run/apache.pid` |
 | checkmk_server_site | Name of OMD "site" to create; this is often shown as `my-site` in the CheckMK documentation examples | `test` |
-| checkmk_server_version | Version of CheckMK RAW edition to install | `2.1.0p6` |
+| checkmk_server_version | Version of CheckMK RAW edition to install | `2.1.0p8` |
 | checkmk_server_web_service | Name of the web service to start and enable | `apache2` |
 
 ### Tables of Variables Unique to at Least One Distribution (with Defaults)
@@ -116,11 +116,11 @@ Description: SHA256 checksum of the source installation package
 
 | Distribution | Default |
 | ------------ | ------- |
-| Debian 9 | `sha256:fcfa98aacc009a9a286e62e885d2b77721389f41e7cddf38c024d75a8d72be7e` |
-| Debian 10 | `sha256:7f36d5c06bfa2de28a49c860d0a1f080809332fce86dc9efdb140764377be811` |
-| Debian 11 | `sha256:7a27f1c302b9ba3d51fa9a09c850158bf318adb7030aa0213e4e52e1c16e2c06` |
-| Ubuntu 18.04 | `sha256:00e922c1881f7bd05db8630adbcecb8d4e311b339de0e727353212ab372187f3` |
-| Ubuntu 20.04 | `sha256:00db47074640104a532db0cbdba4e0300a1e04542eab1d5537d8c1c1036d734b` |
+| Debian 9 | `sha256:135221e4ffaac196ce9a3868404bc94c31801b8e486106f36b6eff5eefd2e6b4` |
+| Debian 10 | `sha256:82256316f4ae900a995a2e2416bec6819aa0973dd4ed86cfa7caea50d7643872` |
+| Debian 11 | `sha256:f4134988a0d2eb28ad3f6f23cc7d1ec79d5c290e061be81a4d2072ec36bcfe41` |
+| Ubuntu 18.04 | `sha256:986649b721add22ab75f3f8f56c1668cc0024822c15159db67a74f029a7d0242` |
+| Ubuntu 20.04 | `sha256:fdc36ce0d8fbdd1f7ba27223a5241772c88c9746ee1c1f21f2552fba54520f1e` |
 
 #### checkmk_server_prerequisites
 
