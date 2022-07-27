@@ -1,7 +1,7 @@
 ---
 # Debian 11 "bullseye" variables file for checkmk_server
 checkmk_server_download: "check-mk-raw-{{ checkmk_server_version }}_0.{{ ansible_distribution_release }}_amd64.deb"
-checkmk_server_download_checksum: "sha256:f4134988a0d2eb28ad3f6f23cc7d1ec79d5c290e061be81a4d2072ec36bcfe41"
+checkmk_server_download_checksum: "sha256:0f909fffaa4e9c0179bf8eb64d47c5d36a3a46965439de40b9263c099c7eca39"
 checkmk_server_prerequisites:
   - python3-apt
   - python3-passlib

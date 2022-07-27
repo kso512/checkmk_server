@@ -1,7 +1,7 @@
 ---
 # Ubuntu 20.04 "Focal Fossa" variables file for checkmk_server
 checkmk_server_download: "check-mk-raw-{{ checkmk_server_version }}_0.{{ ansible_distribution_release }}_amd64.deb"
-checkmk_server_download_checksum: "sha256:fdc36ce0d8fbdd1f7ba27223a5241772c88c9746ee1c1f21f2552fba54520f1e"
+checkmk_server_download_checksum: "sha256:45c02ce3dda4fa3e60029fed0e9446cf22c451bf1337665d4c6cb8a0480c14fe"
 checkmk_server_prerequisites:
   - python3-apt
   - python3-passlib
