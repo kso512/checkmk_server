@@ -1,7 +1,7 @@
 ---
 # default (Ubuntu 18.04 "Bionic Beaver") variables file for checkmk_server
 checkmk_server_download: "check-mk-raw-{{ checkmk_server_version }}_0.{{ ansible_distribution_release }}_amd64.deb"
-checkmk_server_download_checksum: "sha256:8d0c2cf76f577df75a6eace961a2f0bb4f3473b8af850a421ccbc589fe5d6d4a"
+checkmk_server_download_checksum: "sha256:0ed2b89345d74f3c851e59ad3934390c2452286f25a09aa0a612fe44b0f70afe"
 checkmk_server_prerequisites:
   - python3-apt
   - python3-passlib

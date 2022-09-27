@@ -1,7 +1,7 @@
 ---
 # Debian 10 "buster" variables file for checkmk_server
 checkmk_server_download: "check-mk-raw-{{ checkmk_server_version }}_0.{{ ansible_distribution_release }}_amd64.deb"
-checkmk_server_download_checksum: "sha256:0862e61542b064e71643a1fa435730af00bfcc2575d225f11106a75caf8e7a9e"
+checkmk_server_download_checksum: "sha256:33b03b6a05acf95d648f60713db89052908eaa0cac7d227fb36f2d2a4c5dcbc3"
 checkmk_server_prerequisites:
   - python3-apt
   - python3-passlib
