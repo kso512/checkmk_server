@@ -56,13 +56,13 @@
   register: checkmk_server_omd_create_register
   tags:
     - checkmk-server
-- name: Log captured creation task | COPY
-  ansible.builtin.copy:
-    content: "{{ checkmk_server_omd_create_register }}"
+- name: Log captured creation task | TEMPLATE
+  ansible.builtin.template:
     dest: "{{ checkmk_server_log_dest }}"
     group: "{{ checkmk_server_log_group }}"
     owner: "{{ checkmk_server_log_owner }}"
     mode: "{{ checkmk_server_log_mode }}"
+    src: "{{ checkmk_server_log_src }}"
     force: no
   when: checkmk_server_adminpw is undefined
   tags:

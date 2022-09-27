@@ -17,6 +17,7 @@ checkmk_server_log_dest: "/opt/omd/sites/{{ checkmk_server_site }}/omd-create.lo
 checkmk_server_log_group: "{{ checkmk_server_site }}"
 checkmk_server_log_mode: "0600"
 checkmk_server_log_owner: "{{ checkmk_server_site }}"
+checkmk_server_log_src: "omd-create.log.j2"
 checkmk_server_man_mode: "0755"
 checkmk_server_man_path: "/usr/share/man/man8"
 checkmk_server_omd_create_command: "omd create {{ checkmk_server_site }}"
