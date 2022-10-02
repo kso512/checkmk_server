@@ -2,6 +2,7 @@
 # defaults file for checkmk_server
 checkmk_server_base_url: "https://download.checkmk.com/checkmk"
 checkmk_server_cache_valid_time: "3600"
+checkmk_server_download: "check-mk-raw-{{ checkmk_server_version }}_0.{{ ansible_distribution_release }}_amd64.deb"
 checkmk_server_download_dest: "{{ checkmk_server_download_dest_folder }}/{{ checkmk_server_download }}"
 checkmk_server_download_dest_folder: "/opt"
 checkmk_server_download_mode: "0644"
@@ -26,6 +27,9 @@ checkmk_server_omd_setup_command: "omd setup"
 checkmk_server_omd_setup_creates: "/opt/omd"
 checkmk_server_omd_start_command: "omd start {{ checkmk_server_site }}"
 checkmk_server_omd_start_creates: "/opt/omd/sites/{{ checkmk_server_site }}/tmp/apache/run/apache.pid"
+checkmk_server_prerequisites:
+  - python3-apt
+  - python3-passlib
 checkmk_server_site: "test"
 checkmk_server_version: "2.1.0p13"
 checkmk_server_web_service: "apache2"

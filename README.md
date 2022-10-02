@@ -16,7 +16,6 @@ All tasks are tagged with `checkmk-server`.
 
 The following distributions have been tested automatically and continuously integrated:
 
-- [Debian 9 "Stretch"](https://www.debian.org/releases/stretch/)
 - [Debian 10 "Buster"](https://www.debian.org/releases/buster/)
 - [Debian 11 "Bullseye"](https://www.debian.org/releases/bullseye/)
 - [Ubuntu 18.04 LTS "Bionic Beaver"](http://releases.ubuntu.com/bionic/)
@@ -34,7 +33,7 @@ For reference, "OMD" below stands for the [Open Monitoring Distribution](https:/
 
 | CheckMK Raw Edition Version | Role Version/Tag |
 | --------------------------- | ---------------- |
-| 2.1.0p13 | 1.0.31 |
+| 2.1.0p13 | 1.0.31 - 1.0.32 |
 | 2.1.0p12 | 1.0.30 |
 | 2.1.0p11 | 1.0.29 |
 | 2.1.0p10 | 1.0.28 |
@@ -102,6 +101,7 @@ Some of these may be seem redundant but are specified so future users can overri
 | checkmk_server_omd_setup_creates | Folder created by setting up OMD | `/opt/omd` |
 | checkmk_server_omd_start_command | Command used to start OMD | `omd start {{ checkmk_server_site }}` |
 | checkmk_server_omd_start_creates | File created by starting OMD | `/opt/omd/sites/{{ checkmk_server_site }}/tmp/apache/run/apache.pid` |
+| checkmk_server_prerequisites | Packages needed before installing CheckMK RAW edition | `python3-apt` `python3-passlib` |
 | checkmk_server_site | Name of OMD "site" to create; this is often shown as `my-site` in the CheckMK documentation examples | `test` |
 | checkmk_server_version | Version of CheckMK RAW edition to install | `2.1.0p13` |
 | checkmk_server_web_service | Name of the web service to start and enable | `apache2` |
@@ -121,18 +121,6 @@ Description: SHA256 checksum of the source installation package
 | Debian 11 | `sha256:7c97aeabf584b2add8ef9538bc926ae29fe421c41ef0a2610ca7e4006ca85511` |
 | Ubuntu 18.04 | `sha256:0ed2b89345d74f3c851e59ad3934390c2452286f25a09aa0a612fe44b0f70afe` |
 | Ubuntu 20.04 | `sha256:be268da6c163ca233d55d5cc86ffc9321b7df79bbb03a5ee901b3ad60b3c87b9` |
-
-#### checkmk_server_prerequisites
-
-Description: Packages needed before installing CheckMK RAW edition
-
-| Distribution | Default |
-| ------------ | ------- |
-| Debian 9 | `python-apt` `python-passlib` |
-| Debian 10 | `python3-apt` `python3-passlib` |
-| Debian 11 | `python3-apt` `python3-passlib` |
-| Ubuntu 18.04 | `python3-apt` `python3-passlib` |
-| Ubuntu 20.04 | `python3-apt` `python3-passlib` |
 
 ## Dependencies
 
