@@ -33,11 +33,11 @@ For reference, "OMD" below stands for the [Open Monitoring Distribution](https:/
 
 | CheckMK Raw Edition Version | Role Version/Tag |
 | --------------------------- | ---------------- |
+| 2.1.0p14 | 1.0.33 |
 | 2.1.0p13 | 1.0.31 - 1.0.32 |
 | 2.1.0p12 | 1.0.30 |
 | 2.1.0p11 | 1.0.29 |
 | 2.1.0p10 | 1.0.28 |
-| 2.1.0p9 | 1.0.27 |
 
 ## Requirements
 
@@ -103,7 +103,7 @@ Some of these may be seem redundant but are specified so future users can overri
 | checkmk_server_omd_start_creates | File created by starting OMD | `/opt/omd/sites/{{ checkmk_server_site }}/tmp/apache/run/apache.pid` |
 | checkmk_server_prerequisites | Packages needed before installing CheckMK RAW edition | `python3-apt` `python3-passlib` |
 | checkmk_server_site | Name of OMD "site" to create; this is often shown as `my-site` in the CheckMK documentation examples | `test` |
-| checkmk_server_version | Version of CheckMK RAW edition to install | `2.1.0p13` |
+| checkmk_server_version | Version of CheckMK RAW edition to install | `2.1.0p14` |
 | checkmk_server_web_service | Name of the web service to start and enable | `apache2` |
 
 ### Tables of Variables Unique to at Least One Distribution (with Defaults)
@@ -116,11 +116,10 @@ Description: SHA256 checksum of the source installation package
 
 | Distribution | Default |
 | ------------ | ------- |
-| Debian 9 | `sha256:0b80972f6985a6c1a9843ee02a6fc171614410448ea3359c463f4e117b8f9fd4` |
-| Debian 10 | `sha256:33b03b6a05acf95d648f60713db89052908eaa0cac7d227fb36f2d2a4c5dcbc3` |
-| Debian 11 | `sha256:7c97aeabf584b2add8ef9538bc926ae29fe421c41ef0a2610ca7e4006ca85511` |
-| Ubuntu 18.04 | `sha256:0ed2b89345d74f3c851e59ad3934390c2452286f25a09aa0a612fe44b0f70afe` |
-| Ubuntu 20.04 | `sha256:be268da6c163ca233d55d5cc86ffc9321b7df79bbb03a5ee901b3ad60b3c87b9` |
+| Debian 10 | `sha256:aa8c633904f1944f307a956d343d1843d9113dc4e3666c129d7b541cee66f53b` |
+| Debian 11 | `sha256:635ea86b6a1bc0f2456a8dd1c93c825c5c27dfb933eff59425e7a38bc3dfd980` |
+| Ubuntu 18.04 | `sha256:6c7d00329639a314787df2297b1c7fd5dde490a5f524c76f9b591c69387154b5` |
+| Ubuntu 20.04 | `sha256:7b570fb1a7f6243b1d61fb49e013832c7ee695d25e645a6985e494e187c572be` |
 
 ## Dependencies
 
