@@ -33,11 +33,11 @@ For reference, "OMD" below stands for the [Open Monitoring Distribution](https:/
 
 | CheckMK Raw Edition Version | Role Version/Tag |
 | --------------------------- | ---------------- |
+| 2.1.0p15 | 1.0.34 |
 | 2.1.0p14 | 1.0.33 |
 | 2.1.0p13 | 1.0.31 - 1.0.32 |
 | 2.1.0p12 | 1.0.30 |
 | 2.1.0p11 | 1.0.29 |
-| 2.1.0p10 | 1.0.28 |
 
 ## Requirements
 
