@@ -103,7 +103,7 @@ Some of these may be seem redundant but are specified so future users can overri
 | checkmk_server_omd_start_creates | File created by starting OMD | `/opt/omd/sites/{{ checkmk_server_site }}/tmp/apache/run/apache.pid` |
 | checkmk_server_prerequisites | Packages needed before installing CheckMK RAW edition | `python3-apt` `python3-passlib` |
 | checkmk_server_site | Name of OMD "site" to create; this is often shown as `my-site` in the CheckMK documentation examples | `test` |
-| checkmk_server_version | Version of CheckMK RAW edition to install | `2.1.0p14` |
+| checkmk_server_version | Version of CheckMK RAW edition to install | `2.1.0p15` |
 | checkmk_server_web_service | Name of the web service to start and enable | `apache2` |
 
 ### Tables of Variables Unique to at Least One Distribution (with Defaults)
@@ -116,10 +116,10 @@ Description: SHA256 checksum of the source installation package
 
 | Distribution | Default |
 | ------------ | ------- |
-| Debian 10 | `sha256:aa8c633904f1944f307a956d343d1843d9113dc4e3666c129d7b541cee66f53b` |
-| Debian 11 | `sha256:635ea86b6a1bc0f2456a8dd1c93c825c5c27dfb933eff59425e7a38bc3dfd980` |
-| Ubuntu 18.04 | `sha256:6c7d00329639a314787df2297b1c7fd5dde490a5f524c76f9b591c69387154b5` |
-| Ubuntu 20.04 | `sha256:7b570fb1a7f6243b1d61fb49e013832c7ee695d25e645a6985e494e187c572be` |
+| Debian 10 | `sha256:74b51906966070840d5d6d4513bcd3f7af8ba2bc31c6540b80be0c34d99a1108` |
+| Debian 11 | `sha256:bcf427cbe80624a520239a6abb6b6ef3743f1ac05fe8bbe1c92a732b74a7adcd` |
+| Ubuntu 18.04 | `sha256:0741dfb73215c6aa29149efa05656e6be01178ef6e477afdc80ebe2c6f9c2dc3` |
+| Ubuntu 20.04 | `sha256:7dc747b5bdd59ab9184f083b6ce33af0661a906d78babbab56a853cec5e18256` |
 
 ## Dependencies
 
