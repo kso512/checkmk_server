@@ -33,11 +33,11 @@ For reference, "OMD" below stands for the [Open Monitoring Distribution](https:/
 
 | CheckMK Raw Edition Version | Role Version/Tag |
 | --------------------------- | ---------------- |
+| 2.1.0p20 | 1.0.39 |
 | 2.1.0p19 | 1.0.38 |
 | 2.1.0p18 | 1.0.37 |
 | 2.1.0p17 | 1.0.36 |
 | 2.1.0p16 | 1.0.35 |
-| 2.1.0p15 | 1.0.34 |
 
 ## Requirements
 
@@ -103,7 +103,7 @@ Some of these may be seem redundant but are specified so future users can overri
 | checkmk_server_omd_start_creates | File created by starting OMD | `/opt/omd/sites/{{ checkmk_server_site }}/tmp/apache/run/apache.pid` |
 | checkmk_server_prerequisites | Packages needed before installing CheckMK RAW edition | `python3-apt` `python3-passlib` |
 | checkmk_server_site | Name of OMD "site" to create; this is often shown as `my-site` in the CheckMK documentation examples | `test` |
-| checkmk_server_version | Version of CheckMK RAW edition to install | `2.1.0p19` |
+| checkmk_server_version | Version of CheckMK RAW edition to install | `2.1.0p20` |
 | checkmk_server_web_service | Name of the web service to start and enable | `apache2` |
 
 ### Tables of Variables Unique to at Least One Distribution (with Defaults)
@@ -116,10 +116,10 @@ Description: SHA256 checksum of the source installation package
 
 | Distribution | Default |
 | ------------ | ------- |
-| Debian 10 | `sha256:d917b7dd8333593171cc0122a1597cb47d82cd865dff622251d36093e763e7ec` |
-| Debian 11 | `sha256:43193d8d15793ac7e33af377b118981720dd7d5985d6cf7442f6c756f1a71f8d` |
-| Ubuntu 18.04 | `sha256:ab2da37515b1ecc2a25a9d4f72612a51d20e08000b960be597eb41cf6389ab7f` |
-| Ubuntu 20.04 | `sha256:0987c1c05e66141a5aea011250582f47487990bc4d0257d0a8f9037b4821a032` |
+| Debian 10 | `sha256:4777c121a8e9eeceb8810cebf9c89788c8c3763e566331c7a359e4a4fca48abd` |
+| Debian 11 | `sha256:dd93c3786e9b2b7f203b1cf045ebeae9e4710c7ec3b28642587dd7056c09cad3` |
+| Ubuntu 18.04 | `sha256:51f00a38e6ad169e5e0f02854185968a8c2bc66501c181e80522542d035dc73e` |
+| Ubuntu 20.04 | `sha256:51264bccf24e24dac4d7a1f73e6d1ab7fc77bce934f25453bbe9f4940ebfa6ab` |
 
 ## Dependencies
 
