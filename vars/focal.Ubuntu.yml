@@ -1,4 +1,4 @@
 ---
 # Ubuntu 20.04 "Focal Fossa" variables file for checkmk_server
-checkmk_server_download_checksum: "sha256:51264bccf24e24dac4d7a1f73e6d1ab7fc77bce934f25453bbe9f4940ebfa6ab"
+checkmk_server_download_checksum: "sha256:2f760783843833f3e41c99ceaafc003d15694831e39a4dc8e5886c7104368c00"
 ...
