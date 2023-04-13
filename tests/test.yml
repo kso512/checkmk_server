@@ -1,5 +1,6 @@
 ---
 - hosts: localhost
+  name: Test
   remote_user: root
   roles:
     - checkmk_server
