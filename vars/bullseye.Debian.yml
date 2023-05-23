@@ -1,4 +1,4 @@
 ---
 # Debian 11 "bullseye" variables file for checkmk_server
-checkmk_server_download_checksum: "sha256:d777d4655b0a1cc0e2c7913d77d55fb3b905644b24b6721b637ccefb5308efd8"
+checkmk_server_download_checksum: "sha256:adfe9eccf8b28276721309711b636c878f59dd1a3b3d051591e35f5b80dbf759"
 ...

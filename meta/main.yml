@@ -14,7 +14,6 @@ galaxy_info:
         - buster
     - name: Ubuntu
       versions:
-        - bionic
         - focal
   galaxy_tags:
     - checkmk
@@ -23,7 +22,6 @@ galaxy_info:
     - ubuntu
     - debian
     - buster
-    - bionic
     - focal
     - monitoring
 dependencies: []

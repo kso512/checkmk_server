@@ -3,7 +3,7 @@
 # Script to automate molecule tests
 
 # List of distros to cover
-DISTRO_LIST=(ubuntu1804 ubuntu2004 debian10 debian11)
+DISTRO_LIST=(ubuntu2004 debian10 debian11)
 
 # Help molecule link the path up correctly
 export ANSIBLE_ROLES_PATH=../

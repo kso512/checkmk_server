@@ -1,4 +1,4 @@
 ---
-# default (Ubuntu 18.04 "Bionic Beaver") variables file for checkmk_server
-checkmk_server_download_checksum: "sha256:7c69c5da4420fca0c62434258cde8b35b9fa4cbde7536b7bfdffc0e2ebe9ece4"
+# default (Ubuntu 20.04 "Focal Fossa") variables file for checkmk_server
+checkmk_server_download_checksum: "sha256:fd725225ea762a32e78d6595c97e88c017bafc9124d375f2cbd03284561d7ff0"
 ...
