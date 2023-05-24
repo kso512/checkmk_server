@@ -1,8 +1,0 @@
----
-- name: Converge
-  hosts: all
-  tasks:
-    - name: "Include checkmk_server"
-      ansible.builtin.include_role:
-        name: "checkmk_server"
-...

@@ -19,11 +19,7 @@ The following distributions have been tested automatically:
 - [Debian 10 "Buster"](https://www.debian.org/releases/buster/)
 - [Debian 11 "Bullseye"](https://www.debian.org/releases/bullseye/)
 - [Ubuntu 20.04 LTS "Focal Fossa"](http://releases.ubuntu.com/focal/)
-
-...using the following technologies:
-
-- [Molecule playbook testing](https://github.com/geerlingguy/molecule-playbook-testing) by [@geerlingguy](https://github.com/geerlingguy)
-- [docker-systemctl-replacement](https://github.com/gdraheim/docker-systemctl-replacement) by [@gdraheim](https://github.com/gdraheim)
+- [Ubuntu 22.04 LTS "Jammy Jellyfish"](http://releases.ubuntu.com/jammy/)
 
 For reference, "OMD" below stands for the [Open Monitoring Distribution](https://checkmk.com/guides/open-monitoring-distribution) which is a predecessor of CheckMK RAW edition.  Those "omd" commands were left in for backwards compatibility.
 
@@ -31,7 +27,7 @@ For reference, "OMD" below stands for the [Open Monitoring Distribution](https:/
 
 | CheckMK Raw Edition Version | Role Version/Tag |
 | --------------------------- | ---------------- |
-| 2.2.0                       | 1.0.48           |
+| 2.2.0                       | 1.0.48 - 1.0.49  |
 | 2.1.0p28                    | 1.0.47           |
 | 2.1.0p27                    | 1.0.46           |
 | 2.1.0p26                    | 1.0.45           |
@@ -117,6 +113,7 @@ Description: SHA256 checksum of the source installation package
 | Debian 10 | `sha256:d388a954c0e21edea142b5413cb39b843de54af2643a1e9ed700577e5e00e924` |
 | Debian 11 | `sha256:adfe9eccf8b28276721309711b636c878f59dd1a3b3d051591e35f5b80dbf759` |
 | Ubuntu 20.04 | `sha256:fd725225ea762a32e78d6595c97e88c017bafc9124d375f2cbd03284561d7ff0` |
+| Ubuntu 22.04 | `sha256:1a61652d01348c01bc1134d02a090e1fc0274dbad0449e88eb58be148c3e4673` |
 
 ## Dependencies
 
