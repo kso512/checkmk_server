@@ -20,10 +20,6 @@ galaxy_info:
     - checkmk
     - raw
     - cre
-    - ubuntu
-    - debian
-    - buster
-    - focal
     - monitoring
 dependencies: []
 ...
