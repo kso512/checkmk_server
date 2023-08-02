@@ -18,6 +18,7 @@ The following distributions have been tested automatically:
 
 - [Debian 10 "Buster"](https://www.debian.org/releases/buster/)
 - [Debian 11 "Bullseye"](https://www.debian.org/releases/bullseye/)
+- [Debian 12 "Bookworm"](https://www.debian.org/releases/bookworm/)
 - [Ubuntu 20.04 LTS "Focal Fossa"](http://releases.ubuntu.com/focal/)
 - [Ubuntu 22.04 LTS "Jammy Jellyfish"](http://releases.ubuntu.com/jammy/)
 
@@ -27,7 +28,7 @@ For reference, "OMD" below stands for the [Open Monitoring Distribution](https:/
 
 | CheckMK Raw Edition Version | Role Version/Tag |
 | --------------------------- | ---------------- |
-| 2.2.0p7                     | 1.0.56           |
+| 2.2.0p7                     | 1.0.56 - 1.0.57  |
 | 2.2.0p6                     | 1.0.55           |
 | 2.2.0p5                     | 1.0.54           |
 | 2.2.0p4                     | 1.0.53           |
@@ -47,7 +48,7 @@ While this role does install the latest stable version of CheckMK, it does not a
 
 These steps may be followed to enact an upgrade on a site named "test" after running a newer update of this role; change "test" to the name of the site you want to upgrade:
 
-1. Become the "test" user: `$ sudo su - test`
+1. Become the "test" user: `$ sudo omd su test`
 1. Stop the "test" site: `$ omd stop`
 1. Update the "test" site; to complete this step you need to interact with the text interface as well: `$ omd update`
 1. Start the "test" site: `$ omd start`
@@ -112,6 +113,7 @@ Description: SHA256 checksum of the source installation package
 | ------------ | ------- |
 | Debian 10 | `sha256:27cc1f6e491d0b0131c6ded87bc7194a52cce2fb39423f5abb3c4608b988b954` |
 | Debian 11 | `sha256:d534c5952469e85036fde62103f67169a36c0fa4ff32c300d304e16a641df2ee` |
+| Debian 12 | `sha256:0a0c1a166add826ce5cd1b2f37373d3ee50417892770df26d85ec88f231d53ec` |
 | Ubuntu 20.04 | `sha256:2e7d69c632bf3f7ccf66e5d52632af0f08770dced9cb032bef5ac9d09c0b6192` |
 | Ubuntu 22.04 | `sha256:61129739819e36da364a6e41e1f254cf70801c3eb593226bed2b94cb88b81e16` |
 
