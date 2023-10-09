@@ -1,15 +1,16 @@
 ---
 galaxy_info:
-  author: Chris Lindbergh
+  author: kso512
   description: A role to install CheckMK RAW edition and set up an initial site.
   company: Uplight, Inc.
   license: GPLv2
   min_ansible_version: 2.11.5
   role_name: checkmk_server
-  namespace: kso512
+  github_branch: main
   platforms:
     - name: Debian
       versions:
+        - bookworm
         - bullseye
         - buster
     - name: Ubuntu
