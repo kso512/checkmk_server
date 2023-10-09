@@ -1,2 +1,5 @@
 # For Snyk
 .dccache
+
+# For Ansible Galaxy NG
+ansible.cfg
