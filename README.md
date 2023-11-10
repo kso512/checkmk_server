@@ -26,11 +26,11 @@ For reference, "OMD" below stands for the [Open Monitoring Distribution](https:/
 
 | CheckMK Raw Edition Version | Role Version/Tag |
 | --------------------------- | ---------------- |
+| 2.2.0p12                    | 1.0.63           |
 | 2.2.0p11                    | 1.0.61 - 1.0.62  |
 | 2.2.0p10                    | 1.0.60           |
 | 2.2.0p9                     | 1.0.59           |
 | 2.2.0p8                     | 1.0.58           |
-| 2.2.0p7                     | 1.0.56 - 1.0.57  |
 
 ## Requirements
 
@@ -46,18 +46,20 @@ While this role does install the latest stable version of CheckMK, it does not a
 
 These steps may be followed to enact an upgrade on a site named "test" after running a newer update of this role; change "test" to the name of the site you want to upgrade:
 
-1. Become the "test" user: `$ sudo omd su test`
-1. Stop the "test" site: `$ omd stop`
-1. Update the "test" site; to complete this step you need to interact with the text interface as well: `$ omd update`
-1. Start the "test" site: `$ omd start`
+1. Become the "test" user: `sudo omd su test`
+1. Stop the "test" site: `omd stop`
+1. Update the "test" site; to complete this step you need to interact with the text interface as well: `omd update`
+1. Start the "test" site: `omd start`
 
 If you have many sites to upgrade, the following one-liner may help.  Just change the `site` variable declaration as needed:
 
     site=test ; sudo omd stop $site ; sudo omd update $site ; sudo omd start $site
 
-In the same manner, older versions are left on the systems by this role and it is up to the administrator to remove unneeded versions.
+For the brave, the `omd` command does allow for fully-automated upgrades, which can then be executed via ansible like so (for a given group `hq-cmk` in the `testing.ini` inventory, a site named `test`, and upgrading to version `2.2.0p12` in this example):
 
-Use this command to remove all unneeded CheckMK versions: `$ sudo omd cleanup`
+    ansible hq-cmk -b -i testing.ini -t checkmk-server -m shell -a "omd stop test ; omd -f -V 2.2.0p12.cre update --conflict=install test ; omd start test" -vvvv
+
+In the same manner, older versions are left on the systems by this role and it is up to the administrator to remove unneeded versions.  Use this command to remove all unneeded CheckMK versions: `sudo omd cleanup`
 
 ## Role Variables
 
@@ -96,7 +98,7 @@ Some of these may be seem redundant but are specified so future users can overri
 | checkmk_server_omd_start_creates | File created by starting OMD | `/opt/omd/sites/{{ checkmk_server_site }}/tmp/apache/run/apache.pid` |
 | checkmk_server_prerequisites | Packages needed before installing CheckMK RAW edition | `python3-apt` `python3-passlib` |
 | checkmk_server_site | Name of OMD "site" to create; this is often shown as `my-site` in the CheckMK documentation examples | `test` |
-| checkmk_server_version | Version of CheckMK RAW edition to install | `2.2.0p11` |
+| checkmk_server_version | Version of CheckMK RAW edition to install | `2.2.0p12` |
 | checkmk_server_web_service | Name of the web service to start and enable | `apache2` |
 
 ### Tables of Variables Unique to at Least One Distribution (with Defaults)
@@ -109,11 +111,11 @@ Description: SHA256 checksum of the source installation package
 
 | Distribution | Default |
 | ------------ | ------- |
-| Debian 10    | `sha256:9d02de31c8b664cebc25df526d2b9e6a75f4ecebee8371e10a4caf74d3b682e5` |
-| Debian 11    | `sha256:bf2f84bb4e713f724a72539af5a20dfc92d44bbc9dae60cd4b94df28c4688c45` |
-| Debian 12    | `sha256:29dd64d090e3ec666618986ad7e1a54904dbfc4aa34d7b49271d30250f47a480` |
-| Ubuntu 20.04 | `sha256:a7aec2005038cab0acef599c354cc8129309cbc6773d18cb2c94f559951d041f` |
-| Ubuntu 22.04 | `sha256:c42f80d8a2601d4076785b3aa3a0cf04e13a1efd3d88d43db93eb3ab8470da45` |
+| Debian 10    | `sha256:db0b2a9864afadca7f9a03a8583e43f51cfec553175ec212a7fc9f7a6e0304d2` |
+| Debian 11    | `sha256:d31d59b3718c588de60bdab93a015bb92775e5ee0d35cc8677f5f752e81c8c95` |
+| Debian 12    | `sha256:1f72d4005fd7dd417e8be382e03065bbb738e0cc1974e3a6cb5d0aeb71b1e9f9` |
+| Ubuntu 20.04 | `sha256:de16fff586b7c96de5ef1320f26a77fb1234f8e42fadbf5ff75e5a27a4fd7143` |
+| Ubuntu 22.04 | `sha256:7e734fcef3012d7cb885b2b34184d24f02094ce1ec956baa2f53d98c62ebd113` |
 
 ## Dependencies
 
