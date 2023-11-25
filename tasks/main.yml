@@ -1,6 +1,6 @@
 ---
 # tasks file for checkmk_server
-- name: Load a variable file based on the OS type, or a default if not found. Using free-form to specify the file | INCLUDE_VARS
+- name: Load a variable file based on the OS type, or a default if not found | INCLUDE_VARS
   ansible.builtin.include_vars: "{{ lookup('first_found', params) }}"
   vars:
     params:
