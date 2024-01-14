@@ -26,11 +26,11 @@ For reference, "OMD" below stands for the [Open Monitoring Distribution](https:/
 
 | CheckMK Raw Edition Version | Role Version/Tag |
 | --------------------------- | ---------------- |
+| 2.2.0p18                    | 1.0.68           |
 | 2.2.0p17                    | 1.0.67           |
 | 2.2.0p16                    | 1.0.66           |
 | 2.2.0p15                    | 1.0.65           |
 | 2.2.0p14                    | 1.0.64           |
-| 2.2.0p12                    | 1.0.63           |
 
 ## Requirements
 
@@ -98,7 +98,7 @@ Some of these may be seem redundant but are specified so future users can overri
 | checkmk_server_omd_start_creates | File created by starting OMD | `/opt/omd/sites/{{ checkmk_server_site }}/tmp/apache/run/apache.pid` |
 | checkmk_server_prerequisites | Packages needed before installing CheckMK RAW edition | `python3-apt` `python3-passlib` |
 | checkmk_server_site | Name of OMD "site" to create; this is often shown as `my-site` in the CheckMK documentation examples | `test` |
-| checkmk_server_version | Version of CheckMK RAW edition to install | `2.2.0p17` |
+| checkmk_server_version | Version of CheckMK RAW edition to install | `2.2.0p18` |
 | checkmk_server_web_service | Name of the web service to start and enable | `apache2` |
 
 ### Tables of Variables Unique to at Least One Distribution (with Defaults)
@@ -111,11 +111,11 @@ Description: SHA256 checksum of the source installation package
 
 | Distribution | Default |
 | ------------ | ------- |
-| Debian 10    | `sha256:03fcfb77ddad760ada7b3ddca3d7df6533306fbc9cff93f98543554b4927ce8b` |
-| Debian 11    | `sha256:b11c8ec2881565f8b815b3eebf80c87a8326d4beb2883c6bec12cba345c5ca71` |
-| Debian 12    | `sha256:df68e53c48499d9a23de65cd1c0ef24312bb8323f597ea181ec19fbba8b6a283` |
-| Ubuntu 20.04 | `sha256:b1937321de7f6b1b2e758b252b8827d6cec725872850778b673f6e2c181273b8` |
-| Ubuntu 22.04 | `sha256:4c3be9c0f3903379a2f659448f9cca1007491504de41f0484f05fae4519bf548` |
+| Debian 10    | `sha256:f16fe1346e99fcd16dcc328868812e133f55f9b229bc3b6acb1af7d1323c5e49` |
+| Debian 11    | `sha256:a918f8d4cf9a5fa91db8f7256a214c54b56886bd4dadf9fdc208cfded2ee268b` |
+| Debian 12    | `sha256:498c69add3854933b4a450c4b0f740b80485c5727b73e117b81b702baaa51f47` |
+| Ubuntu 20.04 | `sha256:553eb44b531e124b9877919e14415cf5cf9cc694e07c45476a6dd3772d66e272` |
+| Ubuntu 22.04 | `sha256:464ce4256a3dede531ca787199de3b275f5a661d796f7b8eccb31695f4da5cdb` |
 
 ## Dependencies
 

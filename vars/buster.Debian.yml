@@ -1,4 +1,4 @@
 ---
 # Debian 10 "buster" variables file for checkmk_server
-checkmk_server_download_checksum: "sha256:03fcfb77ddad760ada7b3ddca3d7df6533306fbc9cff93f98543554b4927ce8b"
+checkmk_server_download_checksum: "sha256:f16fe1346e99fcd16dcc328868812e133f55f9b229bc3b6acb1af7d1323c5e49"
 ...
