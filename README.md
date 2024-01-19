@@ -26,11 +26,11 @@ For reference, "OMD" below stands for the [Open Monitoring Distribution](https:/
 
 | CheckMK Raw Edition Version | Role Version/Tag |
 | --------------------------- | ---------------- |
+| 2.2.0p19                    | 1.0.69           |
 | 2.2.0p18                    | 1.0.68           |
 | 2.2.0p17                    | 1.0.67           |
 | 2.2.0p16                    | 1.0.66           |
 | 2.2.0p15                    | 1.0.65           |
-| 2.2.0p14                    | 1.0.64           |
 
 ## Requirements
 
@@ -57,7 +57,7 @@ If you have many sites to upgrade, the following one-liner may help.  Just chang
 
 For the brave, the `omd` command does allow for fully-automated upgrades, which can then be executed via ansible like so (for a given group `hq-cmk` in the `testing.ini` inventory, a site named `test`, and upgrading to version `2.2.0p12` in this example):
 
-    ansible hq-cmk -b -i testing.ini -m shell -a "omd stop test ; omd -f -V 2.2.0p12.cre update --conflict=install test ; omd start test" -vvvv
+    ansible hq-cmk -b -i testing.ini -m shell -a "site=test ; omd stop $site ; omd -f -V 2.2.0p12.cre update --conflict=install $site ; omd start $site" -vvvv
 
 In the same manner, older versions are left on the systems by this role and it is up to the administrator to remove unneeded versions.  Use this command to remove all unneeded CheckMK versions: `sudo omd cleanup`
 
@@ -98,7 +98,7 @@ Some of these may be seem redundant but are specified so future users can overri
 | checkmk_server_omd_start_creates | File created by starting OMD | `/opt/omd/sites/{{ checkmk_server_site }}/tmp/apache/run/apache.pid` |
 | checkmk_server_prerequisites | Packages needed before installing CheckMK RAW edition | `python3-apt` `python3-passlib` |
 | checkmk_server_site | Name of OMD "site" to create; this is often shown as `my-site` in the CheckMK documentation examples | `test` |
-| checkmk_server_version | Version of CheckMK RAW edition to install | `2.2.0p18` |
+| checkmk_server_version | Version of CheckMK RAW edition to install | `2.2.0p19` |
 | checkmk_server_web_service | Name of the web service to start and enable | `apache2` |
 
 ### Tables of Variables Unique to at Least One Distribution (with Defaults)
@@ -111,11 +111,11 @@ Description: SHA256 checksum of the source installation package
 
 | Distribution | Default |
 | ------------ | ------- |
-| Debian 10    | `sha256:f16fe1346e99fcd16dcc328868812e133f55f9b229bc3b6acb1af7d1323c5e49` |
-| Debian 11    | `sha256:a918f8d4cf9a5fa91db8f7256a214c54b56886bd4dadf9fdc208cfded2ee268b` |
-| Debian 12    | `sha256:498c69add3854933b4a450c4b0f740b80485c5727b73e117b81b702baaa51f47` |
-| Ubuntu 20.04 | `sha256:553eb44b531e124b9877919e14415cf5cf9cc694e07c45476a6dd3772d66e272` |
-| Ubuntu 22.04 | `sha256:464ce4256a3dede531ca787199de3b275f5a661d796f7b8eccb31695f4da5cdb` |
+| Debian 10    | `sha256:3d0be31987dc31d668adb0a6a99560cac2c73f5ba493b9bd65ff63f40f98d65b` |
+| Debian 11    | `sha256:2ecc9573835739e551f54047032912bc4ae2e1230d5d82093de33373bfb144d2` |
+| Debian 12    | `sha256:d1d4ee2599c562b8dc5dc9116670dd2c58eedeb9e424a4ece8b8d5458a6af5ea` |
+| Ubuntu 20.04 | `sha256:777b9c761ee60d99fd316b1d49deff996b9661803e050ec40ea1007e38f1fdb5` |
+| Ubuntu 22.04 | `sha256:fe433b2700a486fcb40ef196379bcc40133ac3bcefbba9723e07a15ead84a511` |
 
 ## Dependencies
 
