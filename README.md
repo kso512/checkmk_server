@@ -26,11 +26,11 @@ For reference, "OMD" below stands for the [Open Monitoring Distribution](https:/
 
 | CheckMK Raw Edition Version | Role Version/Tag |
 | --------------------------- | ---------------- |
+| 2.2.0p21                    | 1.0.71           |
 | 2.2.0p20                    | 1.0.70           |
 | 2.2.0p19                    | 1.0.69           |
 | 2.2.0p18                    | 1.0.68           |
 | 2.2.0p17                    | 1.0.67           |
-| 2.2.0p16                    | 1.0.66           |
 
 ## Requirements
 
@@ -73,21 +73,21 @@ Some of these may be seem redundant but are specified so future users can overri
 | checkmk_server_base_url | Base URL that other URLs are based on | `https://download.checkmk.com/checkmk` |
 | checkmk_server_cache_valid_time | Update the apt cache if it is older than this time, in seconds. | `3600` |
 | checkmk_server_download | Filename of the source installation package | `check-mk-raw-{{ checkmk_server_version }}_0.{{ ansible_distribution_release }}_amd64.deb` |
-| checkmk_server_download_dest | Final full path of the source installation package | `{{ checkmk_server_download_dest_folder }}/{{ checkmk_server_download }}` |
+| checkmk_server_download_dest | Final full path of the source installation package | `"{{ checkmk_server_download_dest_folder }}/{{ checkmk_server_download }}"` |
 | checkmk_server_download_dest_folder | Destination folder of the source installation package | `/opt` |
 | checkmk_server_download_mode | File mode settings of the source installation package | `0755` |
-| checkmk_server_download_url | URL of the source installation package to download | `{{ checkmk_server_base_url }}/{{ checkmk_server_version }}/{{ checkmk_server_source }}` |
-| checkmk_server_htpasswd_group | Name of the group that should own the htpasswd file, as would be fed to chown | `{{ checkmk_server_site }}` |
+| checkmk_server_download_url | URL of the source installation package to download | `"{{ checkmk_server_base_url }}/{{ checkmk_server_version }}/{{ checkmk_server_source }}"` |
+| checkmk_server_htpasswd_group | Name of the group that should own the htpasswd file, as would be fed to chown | `"{{ checkmk_server_site }}"` |
 | checkmk_server_htpasswd_mode | File mode settings of the htpasswd file | `0660` |
 | checkmk_server_htpasswd_name | Name of the user that will have their password set, if `checkmk_server_adminpw` is set | `cmkadmin` |
-| checkmk_server_htpasswd_owner | Name of the user that should own the htpasswd file, as would be fed to chown | `{{ checkmk_server_site }}` |
+| checkmk_server_htpasswd_owner | Name of the user that should own the htpasswd file, as would be fed to chown | `"{{ checkmk_server_site }}"` |
 | checkmk_server_htpasswd_path | Final full path of the htpasswd file | `/opt/omd/sites/{{ checkmk_server_site }}/etc/htpasswd` |
-| checkmk_server_install_package | Final full path of the installation package | `{{ checkmk_server_download_dest }}` |
-| checkmk_server_key_url | URL of the public key for CheckMK | `{{ checkmk_server_base_url }}/Check_MK-pubkey.gpg` |
+| checkmk_server_install_package | Final full path of the installation package | `"{{ checkmk_server_download_dest }}"` |
+| checkmk_server_key_url | URL of the public key for CheckMK | `"{{ checkmk_server_base_url }}/Check_MK-pubkey.gpg"` |
 | checkmk_server_log_dest | Final full path of the OMD create log, which captures the cmkadmin password if `checkmk_server_adminpw` is not set | `/opt/omd/sites/{{ checkmk_server_site }}/omd-create.log` |
-| checkmk_server_log_group | Name of the group that should own the OMD create log, as would be fed to chown | `{{ checkmk_server_site }}` |
+| checkmk_server_log_group | Name of the group that should own the OMD create log, as would be fed to chown | `"{{ checkmk_server_site }}"` |
 | checkmk_server_log_mode | File mode settings of the OMD create log | `0600` |
-| checkmk_server_log_owner | Name of the user that should own the OMD create log, as would be fed to chown | `{{ checkmk_server_site }}` |
+| checkmk_server_log_owner | Name of the user that should own the OMD create log, as would be fed to chown | `"{{ checkmk_server_site }}"` |
 | checkmk_server_man_mode | File mode settings of the required man folder | `0755` |
 | checkmk_server_man_path | Final full path of the required man folder | `/usr/share/man/man8` |
 | checkmk_server_omd_create_command | Command used to create a new OMD site | `omd create {{ checkmk_server_site }}` |
@@ -98,7 +98,7 @@ Some of these may be seem redundant but are specified so future users can overri
 | checkmk_server_omd_start_creates | File created by starting OMD | `/opt/omd/sites/{{ checkmk_server_site }}/tmp/apache/run/apache.pid` |
 | checkmk_server_prerequisites | Packages needed before installing CheckMK RAW edition | `python3-apt` `python3-passlib` |
 | checkmk_server_site | Name of OMD "site" to create; this is often shown as `my-site` in the CheckMK documentation examples | `test` |
-| checkmk_server_version | Version of CheckMK RAW edition to install | `2.2.0p20` |
+| checkmk_server_version | Version of CheckMK RAW edition to install | `2.2.0p21` |
 | checkmk_server_web_service | Name of the web service to start and enable | `apache2` |
 
 ### Tables of Variables Unique to at Least One Distribution (with Defaults)
@@ -111,11 +111,11 @@ Description: SHA256 checksum of the source installation package
 
 | Distribution | Default |
 | ------------ | ------- |
-| Debian 10    | `sha256:21f2e65c492c97b5ee1c9163522a88c35d95d5d4e6fce1298225a4dc0c978e25` |
-| Debian 11    | `sha256:e457167f7b0b6e36e52ae859a06e07c21cb11214133c43307fb42efb13042535` |
-| Debian 12    | `sha256:85643c99fcf7f3f151783c029b22f53bce8442488b203b23d7eddecdaa349651` |
-| Ubuntu 20.04 | `sha256:0f0b4fee92fdeb4fff89ee9c0758104f5122b64453af88d6b1e636528a649671` |
-| Ubuntu 22.04 | `sha256:7004a9c3007df39cbb199a5ce333f1078aa8a6f77cd69e9fc6b875d29023dae2` |
+| Debian 10    | `sha256:10f29b1545c261c437b8306d95a9bd6234f8fe734ede184cc75c0ded206f1d40` |
+| Debian 11    | `sha256:b521f5b61e5bfe5d49cf4edc9c91d65ebbba41ff750b41a166c626ec71dfdba6` |
+| Debian 12    | `sha256:ec8286016c80ee3fd630a81d2540039b007d3cec10eb943d1a3bc42aec78cf10` |
+| Ubuntu 20.04 | `sha256:3a4659186c29fcb3d9a07c4382b803ad8124d016138ddb032e1340ab3bde5928` |
+| Ubuntu 22.04 | `sha256:9b0d8092d78a200fade0f1572aeba3340c3a35e6e63ac45e53e73dcf03b776f7` |
 
 ## Dependencies
 

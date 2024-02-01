@@ -12,6 +12,7 @@
         - 'vars'
   tags:
     - checkmk-server
+
 - name: Install pre-requisites | APT
   ansible.builtin.apt:
     name: "{{ checkmk_server_prerequisites }}"
@@ -20,6 +21,7 @@
     cache_valid_time: "{{ checkmk_server_cache_valid_time }}"
   tags:
     - checkmk-server
+
 - name: Download CheckMK RAW | GET_URL
   ansible.builtin.get_url:
     dest: "{{ checkmk_server_download_dest }}"
@@ -28,6 +30,7 @@
     checksum: "{{ checkmk_server_download_checksum }}"
   tags:
     - checkmk-server
+
 - name: Make sure the man8 folder exists | FILE
   ansible.builtin.file:
     path: "{{ checkmk_server_man_path }}"
@@ -35,6 +38,7 @@
     mode: "{{ checkmk_server_man_mode }}"
   tags:
     - checkmk-server
+
 - name: Install CheckMK RAW | APT
   ansible.builtin.apt:
     deb: "{{ checkmk_server_install_package }}"
@@ -43,12 +47,14 @@
     cache_valid_time: "{{ checkmk_server_cache_valid_time }}"
   tags:
     - checkmk-server
+
 - name: Setup OMD | COMMAND
   ansible.builtin.command: "{{ checkmk_server_omd_setup_command }}"
   args:
     creates: "{{ checkmk_server_omd_setup_creates }}"
   tags:
     - checkmk-server
+
 - name: Create OMD site | COMMAND
   ansible.builtin.command: "{{ checkmk_server_omd_create_command }}"
   args:
@@ -56,6 +62,7 @@
   register: checkmk_server_omd_create_register
   tags:
     - checkmk-server
+
 - name: Log captured creation task | TEMPLATE
   ansible.builtin.template:
     dest: "{{ checkmk_server_log_dest }}"
@@ -67,6 +74,7 @@
   when: checkmk_server_adminpw is undefined
   tags:
     - checkmk-server
+
 - name: Change OMD site admin password | HTPASSWD
   community.general.htpasswd:
     create: yes
@@ -83,12 +91,14 @@
   when: checkmk_server_adminpw is defined
   tags:
     - checkmk-server
+
 - name: Start OMD site | COMMAND
   ansible.builtin.command: "{{ checkmk_server_omd_start_command }}"
   args:
     creates: "{{ checkmk_server_omd_start_creates }}"
   tags:
     - checkmk-server
+
 - name: Start and enable Apache2 | SERVICE
   ansible.builtin.service:
     name: "{{ checkmk_server_web_service }}"
@@ -96,4 +106,5 @@
     enabled: yes
   tags:
     - checkmk-server
+
 ...
