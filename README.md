@@ -2,7 +2,7 @@
 
 [![Release](https://github.com/kso512/checkmk_server/actions/workflows/release.yml/badge.svg)](https://github.com/kso512/checkmk_server/actions/workflows/release.yml) [![GitHub issues](https://img.shields.io/github/issues-raw/kso512/checkmk_server)](https://github.com/kso512/checkmk_server) [![GitHub repo size](https://img.shields.io/github/repo-size/kso512/checkmk_server)](https://github.com/kso512/checkmk_server)
 
-[![made-with-bash](https://img.shields.io/badge/Made%20with-Bash-1f425f.svg)](https://www.gnu.org/software/bash/) [![made-with-Markdown](https://img.shields.io/badge/Made%20with-Markdown-1f425f.svg)](http://commonmark.org) [![GitHub](https://img.shields.io/github/license/kso512/checkmk_server)](https://www.gnu.org/licenses/gpl-2.0.txt)
+[![made-with-Markdown](https://img.shields.io/badge/Made%20with-Markdown-1f425f.svg)](http://commonmark.org) [![GitHub](https://img.shields.io/github/license/kso512/checkmk_server)](https://www.gnu.org/licenses/gpl-2.0.txt)
 
 An [Ansible](https://www.ansible.com/) [Role](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html) to install [CheckMK RAW edition](https://checkmk.com/product/raw-edition) and set up an initial site.
 
@@ -26,11 +26,11 @@ For reference, "OMD" below stands for the [Open Monitoring Distribution](https:/
 
 | CheckMK Raw Edition Version | Role Version/Tag |
 | --------------------------- | ---------------- |
+| 2.3.0                       | 1.0.76           |
 | 2.2.0p25                    | 1.0.75           |
 | 2.2.0p24                    | 1.0.74           |
 | 2.2.0p23                    | 1.0.73           |
 | 2.2.0p22                    | 1.0.72           |
-| 2.2.0p21                    | 1.0.71           |
 
 ## Requirements
 
@@ -98,7 +98,7 @@ Some of these may be seem redundant but are specified so future users can overri
 | checkmk_server_omd_start_creates | File created by starting OMD | `/opt/omd/sites/{{ checkmk_server_site }}/tmp/apache/run/apache.pid` |
 | checkmk_server_prerequisites | Packages needed before installing CheckMK RAW edition | `python3-apt` `python3-passlib` |
 | checkmk_server_site | Name of OMD "site" to create; this is often shown as `my-site` in the CheckMK documentation examples | `test` |
-| checkmk_server_version | Version of CheckMK RAW edition to install | `2.2.0p25` |
+| checkmk_server_version | Version of CheckMK RAW edition to install | `2.3.0` |
 | checkmk_server_web_service | Name of the web service to start and enable | `apache2` |
 
 ### Tables of Variables Unique to at Least One Distribution (with Defaults)
@@ -111,11 +111,11 @@ Description: SHA256 checksum of the source installation package
 
 | Distribution | Default |
 | ------------ | ------- |
-| Debian 10    | `sha256:b7465294f9d19926fb450e49298ce7faade1d5e72e149904c63197e37a82ddab` |
-| Debian 11    | `sha256:833eaa9019ef9b10d146ef6337d13d800fbfc2189c92b4f32dc1a73ad4bed38d` |
-| Debian 12    | `sha256:a7488b91ce89078e821254850d032ba3bbeb8c346b65378a68c71ecd98c6913f` |
-| Ubuntu 20.04 | `sha256:bccd6552bec9770f869b31cfe23d5e4a061865e7338c8917d9efe7dbed0520a2` |
-| Ubuntu 22.04 | `sha256:d7f40b58d50b2847bcaa4d864c16d1c493bb2602edd08dcba1a7245bf37ae118` |
+| Debian 10    | `sha256:f06d48e2a488dbe7f1c32c4a8dd7bde120e021081e46801e3d3a3ad85c20090b` |
+| Debian 11    | `sha256:da215a3d13f50b60c0c90ce9602910e4fd77668cf726e69da78ed3347e4cabc8` |
+| Debian 12    | `sha256:2536e9fe397be11df1e564e28649ef201ced9223c853ece289910fc1faddf127` |
+| Ubuntu 20.04 | `sha256:459bfbc9487f86622ee1f5e0d24dcf8f7d01c480211589ddc70b86157c16ebbf` |
+| Ubuntu 22.04 | `sha256:6c1b6ddc939326e8ec2329eba4cac62a94857013e6ec6693d9d9cac52dc91253` |
 
 ## Dependencies
 
@@ -132,6 +132,10 @@ Example that enforces a specific password for the `cmkadmin` user:
 ## License
 
 [GNU General Public License version 2](https://www.gnu.org/licenses/gpl-2.0.txt)
+
+## Contributing
+
+If you have any suggestions or ideas, please feel free to open an issue, or fork the repository and submit an merge request.
 
 ## Author Information
 
