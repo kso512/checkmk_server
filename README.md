@@ -19,6 +19,7 @@ The following distributions have been tested automatically:
 - [Debian 12 "Bookworm"](https://www.debian.org/releases/bookworm/)
 - [Ubuntu 20.04 LTS "Focal Fossa"](http://releases.ubuntu.com/focal/)
 - [Ubuntu 22.04 LTS "Jammy Jellyfish"](http://releases.ubuntu.com/jammy/)
+- [Ubuntu 24.04 LTS "Noble Numbat"](http://releases.ubuntu.com/noble/)
 
 For reference, "OMD" below stands for the [Open Monitoring Distribution](https://checkmk.com/guides/open-monitoring-distribution) which is a predecessor of CheckMK RAW edition.  Those "omd" commands were left in for backwards compatibility.
 
@@ -26,11 +27,11 @@ For reference, "OMD" below stands for the [Open Monitoring Distribution](https:/
 
 | CheckMK Raw Edition Version | Role Version/Tag |
 | --------------------------- | ---------------- |
+| 2.3.0p7                     | 1.0.83           |
 | 2.3.0p6                     | 1.0.82           |
 | 2.3.0p5                     | 1.0.81           |
 | 2.3.0p4                     | 1.0.80           |
 | 2.2.0p3                     | 1.0.79           |
-| 2.3.0p2                     | 1.0.78           |
 
 ## Requirements
 
@@ -98,7 +99,7 @@ Some of these may be seem redundant but are specified so future users can overri
 | checkmk_server_omd_start_creates | File created by starting OMD | `/opt/omd/sites/{{ checkmk_server_site }}/tmp/apache/run/apache.pid` |
 | checkmk_server_prerequisites | Packages needed before installing CheckMK RAW edition | `python3-apt` `python3-passlib` |
 | checkmk_server_site | Name of OMD "site" to create; this is often shown as `my-site` in the CheckMK documentation examples | `test` |
-| checkmk_server_version | Version of CheckMK RAW edition to install | `2.3.0p6` |
+| checkmk_server_version | Version of CheckMK RAW edition to install | `2.3.0p7` |
 | checkmk_server_web_service | Name of the web service to start and enable | `apache2` |
 
 ### Tables of Variables Unique to at Least One Distribution (with Defaults)
@@ -111,11 +112,12 @@ Description: SHA256 checksum of the source installation package
 
 | Distribution | Default |
 | ------------ | ------- |
-| Debian 10    | `sha256:4be79d2e03c91ed7a84dc02050ae004419c3e84feea7d777b97babf735f6f65d` |
-| Debian 11    | `sha256:40aa7b41c2b79cdd9744746aa1362659dab9411ca77f610cc66e9699016996ef` |
-| Debian 12    | `sha256:efa165a2ec01fe4a1752ad6f9ef0282c288b48167912eba04df6879afd4367cf` |
-| Ubuntu 20.04 | `sha256:fc45911d7b141deca39e221e02de11257067a88d38792e9a4a3bf06dba7387d7` |
-| Ubuntu 22.04 | `sha256:18e12b48b229d92f26b37b9c2a18e3b50cc4bce9f87d96735daa829fadbb65ae` |
+| Debian 10    | `sha256:6fa7ee8bde4f9222742876ce0571875f790d704ab09c7f044e238626eb6a7b81` |
+| Debian 11    | `sha256:e83c1b3f572e10b19e30a4f3477afe662536a8a9647de520403aa85891c5b841` |
+| Debian 12    | `sha256:99e5b893f8355915432554829f277cc881eca885347c38a553d6ff118656dad4` |
+| Ubuntu 20.04 | `sha256:fd18f966c59079c43e545a6ae62f8604dd363a6d6b6d8aa9c4c0ea702f6e215b` |
+| Ubuntu 22.04 | `sha256:6f20091ae5ed8a47e3b7ec57455e13533b00fd92e98443c4798c09bdba6f4dd4` |
+| Ubuntu 24.04 | `sha256:e87a83adc7d30d2ec8da5700840ea3a8b58f08dd61578f839de210dc71957bb4` |
 
 ## Dependencies
 

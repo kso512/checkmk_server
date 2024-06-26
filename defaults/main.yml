@@ -31,6 +31,6 @@ checkmk_server_prerequisites:
   - python3-apt
   - python3-passlib
 checkmk_server_site: test
-checkmk_server_version: 2.3.0p6
+checkmk_server_version: 2.3.0p7
 checkmk_server_web_service: apache2
 ...
