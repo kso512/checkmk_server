@@ -1,4 +1,4 @@
 ---
 # Debian 12 "bookworm" variables file for checkmk_server
-checkmk_server_download_checksum: "sha256:146c0e48472246c099e02ca4b9128f19850a71cc09a0a6b9d28e09103987ef82"
+checkmk_server_download_checksum: "sha256:305b2f50357a629086a9a3fdc4105042b9f9534db4a17a9a873b7d139f2ea72a"
 ...
