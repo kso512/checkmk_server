@@ -1,4 +1,4 @@
 ---
 # Ubuntu 24.04 LTS "Noble Numbat" variables file for checkmk_server
-checkmk_server_download_checksum: "sha256:e318c0c1d1c7b91fdc639d89a1a05d0820614a854dbc19aef7c6719e35a9905a"
+checkmk_server_download_checksum: "sha256:b43051f270b9fa9d552ae87e0b26246ef3949353958472da13d3e91c0afad726"
 ...
