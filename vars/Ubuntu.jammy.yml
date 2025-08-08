@@ -1,4 +1,0 @@
----
-# Ubuntu 22.04 "Jammy Jellyfish" variables file for checkmk_server
-checkmk_server_download_checksum: "sha256:a7d59f201d7e7f004dd90f15ad7764f825dbb25c8050a3d9039d7cb6241bd2a9"
-...
