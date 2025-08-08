@@ -1,4 +1,4 @@
 ---
-# default (Ubuntu 20.04 "Focal Fossa") variables file for checkmk_server
-checkmk_server_download_checksum: "sha256:3d0eb01bc67c37ae7bdc74fd707e87c27a53d73e825d8ce1f6941635492da0e0"
+# default Ubuntu 22.04 "Jammy Jellyfish" variables file for checkmk_server
+checkmk_server_download_checksum: "sha256:9937831fa9f3a620aefd6d048ff6723090477f06710b29f782662dd10d786c56"
 ...
