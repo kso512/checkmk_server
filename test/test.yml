@@ -1,0 +1,7 @@
+---
+- hosts: localhost
+  name: Run role under test
+  become: true
+  roles:
+    - role_under_test
+...
