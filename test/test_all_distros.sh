@@ -28,8 +28,8 @@ for distro in ${distros[@]}; do
 
   # Make sure a site is running
   echo "--- Testing for running status of CheckMK site in distro: $distro"
-  omd_status=$(docker exec --tty $container env TERM=xterm omd status)
-  echo "${omd_status}" | grep "Overall state.*running"
+  omd_status=$(docker exec --tty $container env TERM=xterm omd status --bare)
+  echo "${omd_status}" | grep "OVERALL 0"
 
   # Remove the container once the test passes
   echo "--- Removing container for distro: $distro"
