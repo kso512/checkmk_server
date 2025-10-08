@@ -25,11 +25,11 @@ For reference, "OMD" below stands for the [Open Monitoring Distribution](https:/
 
 | CheckMK Raw Edition Version | Role Version/Tag |
 | --------------------------- | ---------------- |
+| 2.4.0p12                    | 1.1.8            |
 | 2.4.0p10                    | 1.1.7            |
 | 2.4.0p9                     | 1.1.6            |
 | 2.4.0p8                     | 1.1.5            |
 | 2.3.0p30                    | 1.1.4            |
-| 2.3.0p29                    | 1.1.3            |
 
 ## Requirements
 
@@ -54,9 +54,9 @@ If you have many sites to upgrade, the following one-liner may help.  Just chang
 
     site=test ; sudo omd stop $site ; sudo omd update $site ; sudo omd start $site
 
-For the brave, the `omd` command does allow for fully-automated upgrades, which can then be executed via ansible like so (for a given group `hq-cmk` in the `testing.ini` inventory, a site named `test`, and upgrading to version `2.2.0p12` in this example):
+For the brave, the `omd` command does allow for fully-automated upgrades, which can then be executed via ansible like so (for a given group `hq-cmk` in the `testing.ini` inventory, a site named `test`, and upgrading to version `2.4.0p12` in this example):
 
-    ansible hq-cmk -b -i testing.ini -m shell -a "site=test ; omd stop $site ; omd -f -V 2.2.0p12.cre update --conflict=install $site ; omd start $site" -vvvv
+    ansible hq-cmk -b -i testing.ini -m shell -a "site=test ; omd stop $site ; omd -f -V 2.4.0p12.cre update --conflict=install $site ; omd start $site" -vvvv
 
 In the same manner, older versions are left on the systems by this role and it is up to the administrator to remove unneeded versions.  Use this command to remove all unneeded CheckMK versions: `sudo omd cleanup`
 
@@ -97,7 +97,7 @@ Some of these may be seem redundant but are specified so future users can overri
 | checkmk_server_omd_start_creates | File created by starting OMD | `/opt/omd/sites/{{ checkmk_server_site }}/tmp/apache/run/apache.pid` |
 | checkmk_server_prerequisites | Packages needed before installing CheckMK RAW edition | `python3-apt` `python3-passlib` |
 | checkmk_server_site | Name of OMD "site" to create; this is often shown as `my-site` in the CheckMK documentation examples | `test` |
-| checkmk_server_version | Version of CheckMK RAW edition to install | `2.4.0p10` |
+| checkmk_server_version | Version of CheckMK RAW edition to install | `2.4.0p12` |
 | checkmk_server_web_service | Name of the web service to start and enable | `apache2` |
 
 ### Tables of Variables Unique to at Least One Distribution (with Defaults)
@@ -110,10 +110,10 @@ Description: SHA256 checksum of the source installation package
 
 | Distribution                     | Default                                                                   |
 | -------------------------------- | ------------------------------------------------------------------------- |
-| Debian 11 "bullseye"             | `sha256:549890550abe64655faa129b52a61f3ba436636d1314256d8c0112f9d49d7bcd` |
-| Debian 12 "bookworm"             | `sha256:83c99d5451cb8a10668fc789c267aed52c78f60bc60a2c2bb99bd004b8d63ac2` |
-| Ubuntu 22.04 "jammy" (*default*) | `sha256:bef1c7be6dc779503962e0c4c7c73076d6d524abc6af055e9682ae8197a6753a` |
-| Ubuntu 24.04 "noble"             | `sha256:e475d807b79c366011c96add361b879d2c2b00d89d6554655a4ab0e13ff6e8c9` |
+| Debian 11 "bullseye"             | `sha256:477e2325db0db0ac0adc8a8b26441eb8b729b190e7e65e7d6bffba75820b8fbe` |
+| Debian 12 "bookworm"             | `sha256:d559ceb596df226c45672b5deb3d68bce48c30c30a09d838435c0545efe2b652` |
+| Ubuntu 22.04 "jammy" (*default*) | `sha256:b89b486755e6b61952a70be7f377d854c9eace8b2783d4884d125b3156a244c3` |
+| Ubuntu 24.04 "noble"             | `sha256:b8f9cf886883a153c455806f9e2e053c5a8f89afae8fee2d9cbb5f41174a0969` |
 
 ## Dependencies
 
@@ -129,26 +129,34 @@ Example that enforces a specific password for the `cmkadmin` user:
 
 ## Testing
 
-Tested using the included `test_all_distros.sh` command, ran from the main role directory or the `test` subdirectory:
+Tested using the included `./test/test_all_distros.sh` command, ran from the main role directory:
 
-    $ ./test_all_distros.sh
+    $ bash ./test/test_all_distros.sh
     --- Running container for distro: debian11
     --- Testing role in distro: debian11
     
-    PLAY [Run role under test] *******************************************************************************************************************************************************************
+    PLAY [Run role under test] ******************************************************************************************
     
-    TASK [Gathering Facts] ***********************************************************************************************************************************************************************
+    TASK [Gathering Facts] **********************************************************************************************
+    ok: [localhost]
+    
+    TASK [role_under_test : Load a variable file based on the OS type, or a default if not found | INCLUDE_VARS] ********
     ok: [localhost]
 
 %<-- snip -->%
 
-    TASK [role_under_test : Start and enable Apache2 | SERVICE] **********************************************************************************************************************************
+    TASK [role_under_test : Start and enable Apache2 | SERVICE] *********************************************************
     changed: [localhost]
     
-    PLAY RECAP ***********************************************************************************************************************************************************************************
-    localhost                  : ok=11   changed=8    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+    PLAY RECAP **********************************************************************************************************
+    localhost                  : ok=11   changed=8    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
     
+    --- Testing for CheckMK Raw Edition default site in distro: ubuntu2404
+    test             2.4.0p12.cre     default version
+    --- Testing for running status of CheckMK site in distro: ubuntu2404
+    Overall state:      running
     --- Removing container for distro: ubuntu2404
+    <docker container id>
 
 Based on [Jeff Geerling's](https://github.com/geerlingguy) [awesome work](https://hub.docker.com/r/geerlingguy/docker-debian12-ansible).
 
