@@ -25,11 +25,11 @@ For reference, "OMD" below stands for the [Open Monitoring Distribution](https:/
 
 | CheckMK Raw Edition Version | Role Version/Tag |
 | --------------------------- | ---------------- |
+| 2.4.0p16                    | 1.1.10           |
 | 2.4.0p13                    | 1.1.9            |
 | 2.4.0p12                    | 1.1.8            |
 | 2.4.0p10                    | 1.1.7            |
 | 2.4.0p9                     | 1.1.6            |
-| 2.4.0p8                     | 1.1.5            |
 
 ## Requirements
 
@@ -97,7 +97,7 @@ Some of these may be seem redundant but are specified so future users can overri
 | checkmk_server_omd_start_creates | File created by starting OMD | `/opt/omd/sites/{{ checkmk_server_site }}/tmp/apache/run/apache.pid` |
 | checkmk_server_prerequisites | Packages needed before installing CheckMK RAW edition | `python3-apt` `python3-passlib` |
 | checkmk_server_site | Name of OMD "site" to create; this is often shown as `my-site` in the CheckMK documentation examples | `test` |
-| checkmk_server_version | Version of CheckMK RAW edition to install | `2.4.0p13` |
+| checkmk_server_version | Version of CheckMK RAW edition to install | `2.4.0p16` |
 | checkmk_server_web_service | Name of the web service to start and enable | `apache2` |
 
 ### Tables of Variables Unique to at Least One Distribution (with Defaults)
@@ -110,10 +110,11 @@ Description: SHA256 checksum of the source installation package
 
 | Distribution                     | Default                                                                   |
 | -------------------------------- | ------------------------------------------------------------------------- |
-| Debian 11 "bullseye"             | `sha256:16dab0d84f668dc60e32ca2c21703b1312eb64e17a1fbca306840047871df034` |
-| Debian 12 "bookworm"             | `sha256:85922530c345f13fa6140e07ff22ed24eae73b11c92bbb2d39dac2edc9aaea36` |
-| Ubuntu 22.04 "jammy" (*default*) | `sha256:6750351a9f4604771a1e538b44633e4a152f2cce6b8a22d3178f8deb23766e51` |
-| Ubuntu 24.04 "noble"             | `sha256:011cf6b140354b622c8bf157d4e2bab50c33b2191935c679779758202b1170da` |
+| Debian 11 "bullseye"             | `sha256:446cf0f1d4b0752d1223c65d653bea42ac64cdb100b5f6d29d06b7530b4c03ac` |
+| Debian 12 "bookworm"             | `sha256:42b07d865a54b85c1f6e742957e2a5990ed1186942fc53fc729ae5c71636e59d` |
+| Debian 13 "trixie"               | `sha256:d671528449b2613d9576f4336d2837858e348dc02f28e683eb845f964e035deb` |
+| Ubuntu 22.04 "jammy" (*default*) | `sha256:978d9cc4af1285aa159e362454603479156f02be366717e06f46de81ea8b167a` |
+| Ubuntu 24.04 "noble"             | `sha256:54d5140577e86e5505b40b73a81aa266e118a8a7ab2e31d612adf47062d9f428` |
 
 ## Dependencies
 
